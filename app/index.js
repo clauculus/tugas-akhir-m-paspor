@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Image,
   View,
@@ -12,21 +12,25 @@ import {
 } from "react-native";
 import { Button, Input } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  background,
-  layout,
-} from "native-base/lib/typescript/theme/styled-system";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { colors } from "./theme";
+import { useRouter } from "expo-router";
 
-const FirstRoute = ({ data, setData }: any) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+const FirstRoute = ({ data, setData }) => {
+  const [temporaryData, setTemporaryData] = useState(`${data}`);
+
+  return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <TextInput
         style={styles.input}
         placeholder="62XXXXXXXXXXX"
         keyboardType="numeric"
-        onEndEditing={(e) => setData(e)}
+        onChangeText={(val) => {
+          setTemporaryData(val);
+          console.log(val);
+        }}
+        onEndEditing={() => setData(temporaryData)}
+        defaultValue={data}
       />
       <Text
         style={{
@@ -40,32 +44,41 @@ const FirstRoute = ({ data, setData }: any) => (
         Kode OTP akan dikirim ke nomor di atas
       </Text>
     </View>
-  </TouchableWithoutFeedback>
-);
+  );
+};
 
-const SecondRoute = ({ data, setData }: any) => (
-  <View style={{ flex: 1, backgroundColor: "white" }}>
-    <TextInput
-      style={styles.input}
-      placeholder="email@abc.com"
-      keyboardType="email-address"
-      onEndEditing={(e) => setData(e)}
-    />
-    <Text
-      style={{
-        color: colors.inactive,
-        fontSize: 13,
-        fontFamily: "FiraSansRegular",
-        marginBottom: 18,
-        marginLeft: 10,
-      }}
-    >
-      Kode OTP akan dikirim ke email di atas
-    </Text>
-  </View>
-);
+const SecondRoute = ({ data, setData }) => {
+  const [temporaryData, setTemporaryData] = useState(`${data}`);
 
-const renderCustomTabBar = (props: any) => (
+  return (
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <TextInput
+        style={styles.input}
+        placeholder="email@abc.com"
+        keyboardType="email-address"
+        onChangeText={(val) => {
+          setTemporaryData(val);
+          console.log(val);
+        }}
+        onEndEditing={() => setData(temporaryData)}
+        defaultValue={data}
+      />
+      <Text
+        style={{
+          color: colors.inactive,
+          fontSize: 13,
+          fontFamily: "FiraSansRegular",
+          marginBottom: 18,
+          marginLeft: 10,
+        }}
+      >
+        Kode OTP akan dikirim ke email di atas
+      </Text>
+    </View>
+  );
+};
+
+const renderCustomTabBar = (props) => (
   <TabBar
     {...props}
     indicatorStyle={{ backgroundColor: colors.darkBlue }}
@@ -82,7 +95,10 @@ const renderCustomTabBar = (props: any) => (
 );
 
 export default function Index() {
-  const [data, setData] = useState("");
+  const router = useRouter();
+
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -92,12 +108,12 @@ export default function Index() {
 
   const handleLogin = () => {
     // Logic to log in with email and password
-    console.log("Logging in with", data);
+    console.log("Logging in with", phone);
   };
 
   const renderScene = SceneMap({
-    first: () => <FirstRoute data={data} setData={setData} />,
-    second: () => <SecondRoute data={data} setData={setData} />,
+    first: () => <FirstRoute data={phone} setData={setPhone} />,
+    second: () => <SecondRoute data={email} setData={setEmail} />,
   });
 
   return (
@@ -186,12 +202,13 @@ export default function Index() {
             Kode OTP akan dikirim ke nomor di atass
           </Text> */}
           <Button
+            // onPress={handleLogin}
             style={{
               backgroundColor: colors.darkBlue,
               width: "100%",
               borderRadius: 12,
             }}
-            onPress={handleLogin}
+            onPress={() => router.push("/otp")}
           >
             <Text
               style={{
