@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-export default function HistoryScreen() {
+export default function Beranda() {
   return (
     <View>
-      <Text>History Page</Text>
+      <Text>Beranda</Text>
     </View>
   );
 }

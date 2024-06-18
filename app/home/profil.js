@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-export default function HelpScreen() {
+export default function Profil() {
   return (
     <View>
-      <Text>Help Page</Text>
+      <Text>Profil</Text>
     </View>
   );
 }

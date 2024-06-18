@@ -11,8 +11,20 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "app/(onboarding)/screen3.js",
-    "app/(onboarding)/screen2.js",
-    "app/(onboarding)/screen1.js"
-, "app/(home)/profil.js", "app/(home)/permohonan.js", "app/(home)/beranda.js", "app/(home)/bantuan.js", "app/(home)/_layout.js", "app/(onboarding)/_layout.js", "app/theme.js", "app/_layout.js", "app/otp.js", "app/index.tjs", "app/index.js", "app/onboarding.js", "app/otp.js"  ]
+    "app/onboarding/screen3.js",
+    "app/onboarding/screen2.js",
+    "app/onboarding/screen1.js",
+    "app/home/profil.js",
+    "app/home/permohonan.js",
+    "app/home/beranda.js",
+    "app/home/bantuan.js",
+    "app/home/_layout.js",
+    "app/(onboaapp/onboarding/_layout.jseme.js",
+    "app/_layout.js",
+    "app/otp.js",
+    "app/index.tjs",
+    "app/index.js",
+    "app/onboarding.js",
+    "app/otp.js"
+  ]
 }

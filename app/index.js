@@ -183,29 +183,12 @@ export default function Index() {
             renderScene={renderScene}
             style={styles.tabView}
           />
-
-          {/* <TextInput
-            style={styles.input}
-            placeholder="62XXXXXXXXXXX"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <Text
-            style={{
-              color: colors.inactive,
-              fontSize: 13,
-              fontFamily: "FiraSansRegular",
-              marginBottom: 18,
-            }}
-          >
-            Kode OTP akan dikirim ke nomor di atass
-          </Text> */}
           <Button
             // onPress={handleLogin}
             style={{
               backgroundColor: colors.darkBlue,
               width: "100%",
+              height: 48,
               borderRadius: 12,
             }}
             onPress={() => router.push("/otp")}
