@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 export default function Beranda() {
   return (
     <View>
-      <Text>Beranda</Text>
+      <Text>Berandaa</Text>
     </View>
   );
 }
