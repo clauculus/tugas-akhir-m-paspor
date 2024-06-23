@@ -21,6 +21,7 @@ export default function HomeLayout() {
         tabBarIconStyle: {
           marginTop: 5,
         },
+        headerShown: false,
       }}
     >
       <Tabs.Screen
