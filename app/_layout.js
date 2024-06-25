@@ -15,7 +15,6 @@ export default function RootLayout() {
 
   const customTheme = extendTheme({
     colors: {
-      // Define your custom colors here
       customColors: {
         500: "#00395D",
       },
@@ -23,40 +22,40 @@ export default function RootLayout() {
     components: {
       Radio: {
         defaultProps: {
-          colorScheme: "customColors", // Set the default color scheme for radio buttons
+          colorScheme: "customColors",
         },
         baseStyle: {
           // _text: {
-          //   fontSize: "md", // Default font size for radio text
+          //   fontSize: "md",
           //   fontWeight: "bold",
           // },
           _checked: {
             // bg: "#ffffff",
             // color: "#00395D",
-            // borderColor: "#00395D", // Specific border color when checked
-            // backgroundColor: "#00395D", // Specific background color when checked
+            // borderColor: "#00395D",
+            // backgroundColor: "#00395D",
             _icon: {
-              color: "customColors.500", // Middle color when checked
+              color: "customColors.500",
             },
           },
           _unchecked: {
-            borderColor: "#00395D", // Specific border color when unchecked
+            borderColor: "#00395D",
           },
         },
       },
       Select: {
         defaultProps: {
           _selectedItem: {
-            bg: "primary", // Background color when selected
-            _text: { color: "white" }, // Text color when selected
+            bg: "primary",
+            _text: { color: "white" },
           },
           _dropdown: {
-            borderRadius: "md", // Border radius for dropdown
-            mt: 1, // Margin top for dropdown
-            bg: "white", // Background color for dropdown
-            height: 200, // Height of the dropdown
-            borderWidth: 1.5, // Border width for dropdown
-            borderColor: "gray.300", // Border color for dropdown
+            borderRadius: "md",
+            mt: 1,
+            bg: "white",
+            height: 200,
+            borderWidth: 1.5,
+            borderColor: "gray.300",
           },
         },
       },
@@ -78,10 +77,14 @@ export default function RootLayout() {
       <NativeBaseProvider theme={customTheme}>
         <SafeAreaProvider>
           <Stack>
+            <Stack.Screen name="home" options={{ headerShown: false }} />
+
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="otp" options={{ headerShown: false }} />
             <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-            <Stack.Screen name="home" options={{ headerShown: false }} />
+            {/* <Stack.Screen name="home" options={{ headerShown: false }} /> */}
+            <Stack.Screen name="lokasi" options={{ headerShown: false }} />
+            <Stack.Screen name="form" options={{ headerShown: false }} />
           </Stack>
         </SafeAreaProvider>
       </NativeBaseProvider>

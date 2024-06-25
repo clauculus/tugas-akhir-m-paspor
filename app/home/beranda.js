@@ -13,9 +13,12 @@ import { colors } from "../theme";
 import React, { useState, useEffect } from "react";
 import { Radio, Select, Button } from "native-base";
 import { kotaPenyediaLayanan } from "../data/kota";
+import { kanim } from "../data/kanim";
+import { useRouter } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function Beranda() {
+  const router = useRouter();
   const [jenisPermohonan, setJenisPermohonan] = useState("");
   const [kota, setKota] = useState("");
   const [tanggalAwal, setTanggalAwal] = useState("");
@@ -53,8 +56,99 @@ export default function Beranda() {
     });
   };
 
+  // const handleCariKuota = () => {
+  //   console.log(jenisPermohonan, kota, tanggalAwal, tanggalAkhir);
+  // };
+
+  const filterLocations = (listLokasi, filters) => {
+    const { jenisPermohonan, kota, tanggalAwal, tanggalAkhir } = filters;
+    const resultsWithKuota = [];
+    const resultsWithoutKuota = [];
+    listLokasi.forEach((lokasi) => {
+      if (kota && lokasi.kota !== kota) return;
+
+      const monthData = lokasi[jenisPermohonan];
+
+      if (!monthData || monthData.length === 0) return;
+
+      let totalKuota = 0;
+
+      if (tanggalAwal && tanggalAkhir) {
+        console.log(tanggalAwal, tanggalAkhir);
+        const startMonth = tanggalAwal.getMonth() + 1;
+        const startDay = tanggalAwal.getDate();
+        const endMonth = tanggalAkhir.getMonth() + 1;
+        const endDay = tanggalAkhir.getDate();
+
+        console.log("startMonth", startMonth);
+        console.log("startDay", startDay);
+        console.log("endMonth", endMonth);
+        console.log("endDay", endDay);
+
+        monthData.forEach((monthObj) => {
+          const monthKey = Object.keys(monthObj)[0];
+          const monthInt = parseInt(monthKey, 10);
+          console.log("monthKey", monthKey);
+          console.log("monthInt", monthInt);
+
+          if (monthInt >= startMonth && monthInt <= endMonth) {
+            monthObj[monthKey].forEach((dayObj) => {
+              const dayKey = parseInt(Object.keys(dayObj)[0], 10);
+
+              if (
+                (monthInt === startMonth &&
+                  dayKey >= startDay &&
+                  dayKey <= endDay) ||
+                (monthInt === endMonth &&
+                  dayKey >= startDay &&
+                  dayKey <= endDay) ||
+                (monthInt > startMonth && monthInt < endMonth)
+              ) {
+                console.log(
+                  "kuota ditambah pada",
+                  dayKey,
+                  dayObj[dayKey].kuota
+                );
+                totalKuota += dayObj[dayKey].kuota;
+              }
+            });
+          }
+        });
+      } else {
+        monthData.forEach((monthObj) => {
+          const monthKey = Object.keys(monthObj)[0];
+          monthObj[monthKey].forEach((dayObj) => {
+            totalKuota += dayObj[Object.keys(dayObj)[0]].kuota;
+          });
+        });
+      }
+      if (totalKuota > 0) {
+        resultsWithKuota.push({ lokasi, totalKuota });
+      } else {
+        resultsWithoutKuota.push({ lokasi, totalKuota });
+      }
+    });
+
+    return { resultsWithKuota, resultsWithoutKuota };
+  };
+
   const handleCariKuota = () => {
-    console.log(jenisPermohonan, kota, tanggalAwal, tanggalAkhir);
+    const filters = {
+      jenisPermohonan,
+      kota,
+      tanggalAwal,
+      tanggalAkhir,
+    };
+    const results = filterLocations(kanim, filters);
+    console.log(JSON.stringify(results));
+
+    router.push({
+      pathname: "/lokasi/hasilPencarian",
+      params: {
+        results: JSON.stringify(results),
+        filters: JSON.stringify(filters),
+      },
+    });
   };
 
   useEffect(() => {
@@ -88,7 +182,7 @@ export default function Beranda() {
                   onChange={(e) => setJenisPermohonan(e)}
                   style={{ flexDirection: "row" }}
                 >
-                  <Radio value="Reguler" my="1" size="sm">
+                  <Radio value="reguler" my="1" size="sm">
                     <Text
                       style={{
                         fontFamily: "FiraSansRegular",
@@ -99,7 +193,7 @@ export default function Beranda() {
                       Reguler
                     </Text>
                   </Radio>
-                  <Radio value="Percepatan" my="1" ml="3" size="sm">
+                  <Radio value="percepatan" my="1" ml="3" size="sm">
                     <Text
                       style={{
                         fontFamily: "FiraSansRegular",

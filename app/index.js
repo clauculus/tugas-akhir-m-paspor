@@ -107,7 +107,6 @@ export default function Index() {
   ]);
 
   const handleLogin = () => {
-    // Logic to log in with email and password
     console.log("Logging in with", phone);
   };
 
@@ -233,17 +232,17 @@ const styles = StyleSheet.create({
   tabView: {
     backgroundColor: "white",
     width: "100%",
-    height: 150, // Adjust height as needed
+    height: 150,
   },
   backgroundImage: {
-    height: height * 0.5, // 50% of screen height
+    height: height * 0.5,
     width: "100%",
   },
   overlay: {
     flex: 1,
     flexDirection: "column",
     height: "50%",
-    // backgroundColor: "rgba(0, 0, 0, 0.5)", // semi-transparent overlay to improve readability
+    // backgroundColor: "rgba(0, 0, 0, 0.5)",
     width: "100%",
     padding: 30,
     alignItems: "center",
