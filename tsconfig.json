@@ -25,6 +25,7 @@
     "app/index.tjs",
     "app/index.js",
     "app/onboarding.js",
-    "app/otp.js"
+    "app/otp.js",
+    "components/CustomCalendar.js"
   ]
 }

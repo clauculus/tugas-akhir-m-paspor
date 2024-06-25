@@ -54,7 +54,7 @@ export default function PilihJadwal() {
       />
       {selectedDate && (
         <Select
-          placeholder="Pilih kota"
+          placeholder="Pilih waktu"
           selectedValue={selectedTime}
           width="full"
           fontSize={15}
