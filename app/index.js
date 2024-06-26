@@ -96,11 +96,11 @@ const renderCustomTabBar = (props) => (
 
 export default function Index() {
   const router = useRouter();
+  const [index, setIndex] = useState(0);
 
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Nomor Telepon" },
     { key: "second", title: "Email" },
