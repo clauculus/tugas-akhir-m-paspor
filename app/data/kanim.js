@@ -2,8 +2,10 @@ export const kanim = [
   {
     nama: "Location A",
     kota: "Jakarta",
+    alamat:
+      "UNIT LAYANAN PASPOR, MIKO MALL, JL. KOPO NO. 599 KECAMATAN BANDUNG",
     isBiasa: true,
-    isElektronik: true,
+    isElektronik: false,
     isPolikarbonat: false,
     path: "path/to/image/locationA.jpg",
     jarak: 10,
@@ -47,6 +49,8 @@ export const kanim = [
   {
     nama: "Location B",
     kota: "Jakarta",
+    alamat:
+      "UNIT LAYANAN PASPOR, MIKO MALL, JL. KOPO NO. 599 KECAMATAN BANDUNG",
     isBiasa: true,
     isElektronik: true,
     isPolikarbonat: false,
@@ -92,9 +96,11 @@ export const kanim = [
   {
     nama: "Location C",
     kota: "Bandung",
+    alamat:
+      "UNIT LAYANAN PASPOR, MIKO MALL, JL. KOPO NO. 599 KECAMATAN BANDUNG",
     isBiasa: true,
     isElektronik: true,
-    isPolikarbonat: false,
+    isPolikarbonat: true,
     path: "path/to/image/locationC.jpg",
     jarak: 50,
     reguler: [
