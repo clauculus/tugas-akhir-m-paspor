@@ -203,7 +203,7 @@ export default function HasilPencarian() {
                     fontFamily: "FiraSansMedium",
                   }}
                 >
-                  Pilih Kuota
+                  Pilih Kantor
                 </Text>
               </Button>
 
