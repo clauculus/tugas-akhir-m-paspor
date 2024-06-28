@@ -5,6 +5,8 @@ const colors = {
   inactive: "#707070",
   grey: "#D9D9D9",
   placeholder: "#ABABAB",
+  lightBlue: "#E8F7F5",
+  green: "#00CD00",
 };
 
 export { colors };
