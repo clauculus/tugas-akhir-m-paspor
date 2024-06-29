@@ -70,7 +70,6 @@ export default function Step1() {
             setSubstep(2);
             console.log("substep final", 2);
           }
-          22;
         }
       } catch (error) {
         console.error("Failed to fetch the draft", error);
