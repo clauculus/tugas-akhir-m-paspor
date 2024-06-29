@@ -37,7 +37,7 @@ export default function Step2() {
             onPress={() => router.back()}
           />
           <View>
-            <Text style={styles.navbarText}>Permohonan Paspor</Text>
+            <Text style={styles.navbarText}>Step 2</Text>
           </View>
         </View>
       </ImageBackground>

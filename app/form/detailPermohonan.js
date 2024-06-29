@@ -31,6 +31,7 @@ export default function DetailPermohonan() {
         const currentDraft = drafts.find((d) => {
           d.id == draftId && setDraft(d);
         });
+        console.log(draft, "horeeee");
         // setDraft(currentDraft);
         // console.log("hi", currentDraft);
         // console.log("ini currentDraft", draft);
@@ -40,7 +41,7 @@ export default function DetailPermohonan() {
     };
 
     fetchDraft();
-  }, [draftId]);
+  }, []);
 
   const saveDrafts = async (newDraft) => {
     try {
@@ -66,13 +67,39 @@ export default function DetailPermohonan() {
   // };
 
   const handleStepChange = (step) => {
-    router.push({
-      pathname: `/form/${step}`,
-      params: {
-        draftId,
-        substep: 1,
-      },
-    });
+    if (step === "step1") {
+      console.log(draft.step1, "ahahha");
+      if (draft.step1) {
+        console.log("masukkk", draft.step1.substep);
+        const pictureTaken = draft.step1.substep;
+        console.log("picture Taken", draft.step1.pictureTaken);
+        const substep = pictureTaken ? 2 : 1;
+
+        router.push({
+          pathname: `/form/${step}`,
+          params: {
+            draftId,
+            // substepParams: draft.step1.substep,
+          },
+        });
+      } else {
+        router.push({
+          pathname: `/form/${step}`,
+          params: {
+            draftId,
+            // substepParams: 1,
+          },
+        });
+      }
+    } else {
+      router.push({
+        pathname: `/form/${step}`,
+        params: {
+          draftId,
+          // substepParams: 1,
+        },
+      });
+    }
   };
 
   if (!draft) {
@@ -260,6 +287,7 @@ export default function DetailPermohonan() {
                 borderWidth: 0.5,
                 borderColor: "#6FA39A",
               }}
+              onPress={() => handleStepChange("step2")}
             >
               <Text
                 style={{
@@ -284,6 +312,7 @@ export default function DetailPermohonan() {
                 borderWidth: 0.5,
                 borderColor: "#6FA39A",
               }}
+              onPress={() => handleStepChange("step3")}
             >
               <Text
                 style={{
@@ -308,6 +337,7 @@ export default function DetailPermohonan() {
                 borderWidth: 0.5,
                 borderColor: "#6FA39A",
               }}
+              onPress={() => handleStepChange("step4")}
             >
               <Text
                 style={{

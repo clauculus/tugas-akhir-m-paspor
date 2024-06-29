@@ -37,7 +37,7 @@ export default function Step3() {
             onPress={() => router.back()}
           />
           <View>
-            <Text style={styles.navbarText}>Permohonan Paspor</Text>
+            <Text style={styles.navbarText}>Step 3</Text>
           </View>
         </View>
       </ImageBackground>
