@@ -6,7 +6,8 @@ const colors = {
   grey: "#D9D9D9",
   placeholder: "#ABABAB",
   lightBlue: "#E8F7F5",
-  green: "#00CD00",
+  green: "#0FC70F",
+  yellow: "#FFAC00",
 };
 
 export { colors };

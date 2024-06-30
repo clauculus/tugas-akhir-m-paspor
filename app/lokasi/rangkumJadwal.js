@@ -8,7 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RangkumJadwal() {
   const router = useRouter();
-  const { lokasi, selectedDate, selectedTime } = useLocalSearchParams();
+  const { lokasi, selectedDate, selectedTime, jenisPermohonan } =
+    useLocalSearchParams();
   const detailLokasi = JSON.parse(lokasi);
   const [jenisPaspor, setJenisPaspor] = useState(null);
 
@@ -28,11 +29,17 @@ export default function RangkumJadwal() {
   };
 
   const handleSaveAndRedirect = async () => {
+    const createdAt = new Date();
+    const status = "Menunggu Pembayaran";
+
     const draftId = await saveDraft({
       detailLokasi,
       selectedDate,
       selectedTime,
       jenisPaspor,
+      jenisPermohonan,
+      createdAt,
+      status,
     });
 
     router.push({

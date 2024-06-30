@@ -76,6 +76,7 @@ export default function PilihJadwal() {
               lokasi: lokasi,
               selectedDate: selectedDate,
               selectedTime: selectedTime,
+              jenisPermohonan: jenisPermohonan,
             },
           })
         }
