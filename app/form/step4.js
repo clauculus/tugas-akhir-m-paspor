@@ -58,38 +58,6 @@ export default function Step4() {
     { label: "WNA", value: "WNA" },
   ];
 
-  const tujuanMembuatOptions = [
-    { label: "Wisata", value: "Wisata" },
-    { label: "Umroh", value: "Umroh" },
-    { label: "Haji", value: "Haji" },
-    { label: "Bekerja Formal", value: "Bekerja Formal" },
-    {
-      label: "Pekerja Migran Indonesia (PMI)",
-      value: "Pekerja Migran Indonesia (PMI)",
-    },
-    { label: "Belajar", value: "Belajar" },
-    { label: "Berobat", value: "Berobat" },
-  ];
-
-  const rencanaTinggalOptions = [
-    { label: "< 1 Bulan", value: "< 1 Bulan" },
-    { label: "< 6 Bulan", value: "< 6 Bulan" },
-    { label: "< 1 Tahun", value: "< 1 Tahun" },
-    { label: "< 5 Tahun", value: "< 5 Tahun" },
-    { label: "> 5 Tahun", value: "> 5 Tahun" },
-  ];
-
-  const provinceOptions = [
-    { label: "Jawa Barat", value: "Jawa Barat" },
-    { label: "Jawa Tengah", value: "Jawa Tengah" },
-    { label: "Jawa Timur", value: "Jawa Timur" },
-  ];
-
-  const hubunganKeluargaOptions = [
-    { label: "Orang tua", value: "Orang tua" },
-    { label: "Kakak/Adik", value: "Kakak/Adik" },
-  ];
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -137,7 +105,6 @@ export default function Step4() {
       if (draftIndex !== -1) {
         drafts[draftIndex].step4 = { ...drafts[draftIndex].step4, ...data };
         await AsyncStorage.setItem("drafts", JSON.stringify(drafts));
-        setDraft(drafts[draftIndex]);
       }
     } catch (e) {
       console.error("Failed to save step data:", e);
