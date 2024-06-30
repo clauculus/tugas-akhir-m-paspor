@@ -46,29 +46,25 @@ export default function Step1() {
       try {
         const existingDrafts = await AsyncStorage.getItem("drafts");
         const drafts = existingDrafts ? JSON.parse(existingDrafts) : [];
-        const currentDraft = drafts.find((d) => {
-          d.id == draftId && setDraft(d);
-        });
+        if (draftId) {
+          const draftIndex = drafts.findIndex((d) => d.id == draftId);
+          const draft = drafts[draftIndex];
 
-        if (draft.step1) {
-          console.log(draft.step1);
-          setNama(draft.step1.nama || "");
-          setNIK(draft.step1.NIK || "");
-          setTanggalLahir(new Date(draft.step1.tanggalLahir) || new Date());
-          setJenisKelamin(draft.step1.jenisKelamin || "");
-          setTanggalDikeluarkanKTP(
-            new Date(draft.step1.tanggalDikeluarkanKTP) || new Date()
-          );
-          setKewarganegaraan(draft.step1.kewarganegaraan || "");
-          setAlamat(draft.step1.alamat || "");
-          setProvinsi(draft.step1.provinsi || "");
-          setKabupaten(draft.step1.kabupaten || "");
-          setKecamatan(draft.step1.kecamatan || "");
-          setKodePos(draft.step1.kodePos || "");
-          console.log("yeah men", draft.step1.pictureTaken);
-          if (draft.step1.pictureTaken) {
-            setSubstep(2);
-            console.log("substep final", 2);
+          if (draft.step1) {
+            setSubstep(draft.step1.substep || 1);
+            setNama(draft.step1.nama || "");
+            setNIK(draft.step1.NIK || "");
+            setTanggalLahir(new Date(draft.step1.tanggalLahir) || new Date());
+            setJenisKelamin(draft.step1.jenisKelamin || "");
+            setTanggalDikeluarkanKTP(
+              new Date(draft.step1.tanggalDikeluarkanKTP) || new Date()
+            );
+            setKewarganegaraan(draft.step1.kewarganegaraan || "");
+            setAlamat(draft.step1.alamat || "");
+            setProvinsi(draft.step1.provinsi || "");
+            setKabupaten(draft.step1.kabupaten || "");
+            setKecamatan(draft.step1.kecamatan || "");
+            setKodePos(draft.step1.kodePos || "");
           }
         }
       } catch (error) {
@@ -77,7 +73,7 @@ export default function Step1() {
     };
 
     fetchDraft();
-  }, [draftId, substep]);
+  }, [draftId]);
 
   console.log("current", substep);
 
@@ -216,6 +212,7 @@ export default function Step1() {
   console.log(pictureTaken);
   return (
     <SafeAreaView
+      edges={["right", "left", "top"]}
       style={{
         backgroundColor: "#FFFFFF",
         height: "100%",
@@ -366,7 +363,7 @@ export default function Step1() {
               style={{
                 flex: 1,
                 flexDirection: "column",
-                gap: 16,
+                gap: 12,
                 // marginBottom: 100,
               }}
             >
@@ -583,7 +580,28 @@ export default function Step1() {
               </View>
             </View>
             <View>
-              <Button onPress={handleContinue}>Simpan</Button>
+              <Button
+                style={{
+                  backgroundColor: colors.darkBlue,
+                  width: "100%",
+                  borderRadius: 12,
+                  height: 48,
+                  margin: "auto",
+                  marginBottom: 10,
+                  marginTop: 20,
+                }}
+                onPress={handleContinue}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 16,
+                    fontFamily: "FiraSansMedium",
+                  }}
+                >
+                  Simpan
+                </Text>
+              </Button>
             </View>
           </View>
         )}

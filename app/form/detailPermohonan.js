@@ -18,23 +18,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function DetailPermohonan() {
   const router = useRouter();
   const { draftId } = useLocalSearchParams();
-  const [currentStep, setCurrentStep] = useState(null);
 
   const [draft, setDraft] = useState({});
 
   useEffect(() => {
     const fetchDraft = async () => {
       try {
-        console.log(draftId);
         const existingDrafts = await AsyncStorage.getItem("drafts");
         const drafts = existingDrafts ? JSON.parse(existingDrafts) : [];
-        const currentDraft = drafts.find((d) => {
-          d.id == draftId && setDraft(d);
-        });
-        console.log(draft, "horeeee");
-        // setDraft(currentDraft);
-        // console.log("hi", currentDraft);
-        // console.log("ini currentDraft", draft);
+
+        if (draftId) {
+          const draftIndex = drafts.findIndex((d) => d.id == draftId);
+          setDraft(drafts[draftIndex]);
+          console.log("ini draft");
+        }
       } catch (error) {
         console.error("Failed to fetch the draft", error);
       }
@@ -56,50 +53,13 @@ export default function DetailPermohonan() {
     }
   };
 
-  // const handleStepChange = (step, data) => {
-  //   const updatedDraft = {
-  //     ...draft,
-  //     [step]: data,
-  //   };
-  //   setDraft(updatedDraft);
-  //   saveDrafts(updatedDraft);
-  //   setCurrentStep(null); // Return to summary page
-  // };
-
   const handleStepChange = (step) => {
-    if (step === "step1") {
-      console.log(draft.step1, "ahahha");
-      if (draft.step1) {
-        console.log("masukkk", draft.step1.substep);
-        const pictureTaken = draft.step1.substep;
-        console.log("picture Taken", draft.step1.pictureTaken);
-        const substep = pictureTaken ? 2 : 1;
-
-        router.push({
-          pathname: `/form/${step}`,
-          params: {
-            draftId,
-            // substepParams: draft.step1.substep,
-          },
-        });
-      } else {
-        router.push({
-          pathname: `/form/${step}`,
-          params: {
-            draftId,
-            // substepParams: 1,
-          },
-        });
-      }
-    } else {
-      router.push({
-        pathname: `/form/${step}`,
-        params: {
-          draftId,
-          // substepParams: 1,
-        },
-      });
-    }
+    router.push({
+      pathname: `/form/${step}`,
+      params: {
+        draftId,
+      },
+    });
   };
 
   if (!draft) {
@@ -110,10 +70,9 @@ export default function DetailPermohonan() {
     );
   }
 
-  console.log(draft, "drafttttttttttt");
-
   return (
     <SafeAreaView
+      edges={["right", "left", "top"]}
       style={{
         backgroundColor: "#FFFFFF",
         height: "100%",

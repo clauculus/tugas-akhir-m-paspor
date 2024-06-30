@@ -79,44 +79,6 @@ export default function Step2() {
         if (draftId) {
           const draftIndex = drafts.findIndex((d) => d.id == draftId);
           const draft = drafts[draftIndex];
-          // const currentDraft = drafts.find((d) => {
-          //   d.id === +draftId;
-          //   setDraft(d);
-          // });
-          console.log("tes", drafts[draftIndex]);
-          //   console.log(draftId);
-          //   console.log(currentDraft);
-          //   if (currentDraft) {
-          //     setDraft(currentDraft);
-          //     if (currentDraft.step2) {
-          //       setSudahMemilikiPaspor(
-          //         currentDraft.step2.sudahMemilikiPaspor || ""
-          //       );
-          //       setTujuanMembuat(currentDraft.step2.tujuanMembuat || "");
-          //       setRencanaTinggal(currentDraft.step2.rencanaTinggal || "");
-          //       setNamaKerabatIndonesia(
-          //         currentDraft.step2.namaKerabatIndonesia || ""
-          //       );
-          //       setNomorTeleponKerabatIndonesia(
-          //         currentDraft.step2.nomorTeleponKerabatIndonesia || ""
-          //       );
-          //       setKeteranganHubunganKerabatIndonesia(
-          //         currentDraft.step2.keteranganHubunganKerabatIndonesia || ""
-          //       );
-          //       setNegaraTujuan(currentDraft.step2.negaraTujuan || "");
-          //       setTempatTinggalTujuan(
-          //         currentDraft.step2.tempatTinggalTujuan || ""
-          //       );
-          //       setNamaKerabatTujuan(currentDraft.step2.namaKerabatTujuan || "");
-          //       setNomorTeleponTujuan(
-          //         currentDraft.step2.nomorTeleponTujuan || ""
-          //       );
-          //       setKeteranganHubunganTujuan(
-          //         currentDraft.step2.keteranganHubunganTujuan || ""
-          //       );
-          //     }
-          //   }
-          // }
 
           if (draft.step2) {
             setSudahMemilikiPaspor(draft.step2.sudahMemilikiPaspor || "");
