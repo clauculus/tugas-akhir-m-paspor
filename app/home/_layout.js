@@ -12,7 +12,7 @@ const ChatbotIcon = () => {
       style={styles.chatbotButton}
       onPress={() => router.push("/bantuan/chatbot")}
     >
-      <Text>Chattt</Text>
+      <Ionicons name="chatbubbles" size={30} color={colors.darkBlue} />
     </TouchableOpacity>
   );
 };
@@ -87,9 +87,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 120,
     right: 30,
-    backgroundColor: "#6200ee",
+    backgroundColor: "white",
     padding: 15,
     borderRadius: 30,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
     elevation: 5,
   },
 });
