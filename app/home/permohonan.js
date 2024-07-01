@@ -10,6 +10,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { Button, Input } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,8 +20,29 @@ import { colors } from "../theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FirstRoute = ({ data, setData }) => {
+  const router = useRouter();
   const [temporaryData, setTemporaryData] = useState(`${data}`);
   const [drafts, setDrafts] = useState([]);
+
+  const getColor = (status) => {
+    if (status === "Menunggu Pembayaran") {
+      return colors.yellow;
+    } else if (status === "Pembayaran Gagal") {
+      return "red";
+    } else {
+      return colors.green;
+    }
+  };
+
+  const handleDetail = (id) => {
+    console.log("ke detail");
+    router.push({
+      pathname: "/form/detailPermohonan",
+      params: {
+        draftId: id,
+      },
+    });
+  };
 
   useEffect(() => {
     const fetchDraft = async () => {
@@ -38,7 +60,14 @@ const FirstRoute = ({ data, setData }) => {
   }, []);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        paddingHorizontal: 24,
+        paddingTop: 20,
+      }}
+    >
       {/* <TextInput
         style={styles.input}
         placeholder="62XXXXXXXXXXX"
@@ -62,9 +91,120 @@ const FirstRoute = ({ data, setData }) => {
         Kode OTP akan dikirim ke nomor di atas
       </Text> */}
       {drafts.map((draft) => (
-        <View key={draft.id}>
-          <Text>{draft.id}</Text>
-        </View>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+            shadowColor: "#000",
+            shadowOffset: { width: 1, height: 1 },
+            shadowOpacity: 0.25,
+            shadowRadius: 6,
+            elevation: 1,
+            borderRadius: 18,
+            padding: 23,
+            borderWidth: 0.5,
+            borderColor: "#6FA39A",
+            gap: 6,
+          }}
+          key={draft.id}
+          onPress={() => handleDetail(draft.id)}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              color: colors.darkBlue,
+              fontFamily: "FiraSansMedium",
+              marginBottom: 8,
+            }}
+          >
+            {draft.step1.nama}
+          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                width: "36%",
+                fontSize: 16,
+                color: colors.darkBlue,
+                fontFamily: "FiraSansMedium",
+              }}
+            >
+              Lokasi
+            </Text>
+            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              : {draft.detailLokasi.lokasi.nama}
+            </Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                width: "36%",
+                fontSize: 16,
+                color: colors.darkBlue,
+                fontFamily: "FiraSansMedium",
+              }}
+            >
+              Tanggal Kedatangan
+            </Text>
+            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              : {draft.selectedDate}
+            </Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                width: "36%",
+                fontSize: 16,
+                color: colors.darkBlue,
+                fontFamily: "FiraSansMedium",
+              }}
+            >
+              Jam Kedatangan
+            </Text>
+            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              : {draft.selectedTime}
+            </Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                width: "36%",
+                fontSize: 16,
+                color: colors.darkBlue,
+                fontFamily: "FiraSansMedium",
+              }}
+            >
+              Status
+            </Text>
+            <View
+              style={{
+                fontFamily: "FiraSansRegular",
+                fontSize: 16,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              <Text>: </Text>
+              <View
+                style={{
+                  backgroundColor: getColor(draft.status),
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                  borderRadius: 15,
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontFamily: "FiraSansMedium",
+                    fontSize: 14,
+                  }}
+                >
+                  {draft.status.toUpperCase()}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
@@ -108,6 +248,21 @@ const SecondRoute = ({ data, setData }) => {
         >
           MIRA SETIAWAN
         </Text>
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            style={{
+              width: "36%",
+              fontSize: 16,
+              color: colors.darkBlue,
+              fontFamily: "FiraSansMedium",
+            }}
+          >
+            Lokasi
+          </Text>
+          <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+            : ULP Bandung
+          </Text>
+        </View>
         <View style={{ flexDirection: "row" }}>
           <Text
             style={{

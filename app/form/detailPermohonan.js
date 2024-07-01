@@ -486,7 +486,7 @@ export default function DetailPermohonan() {
                       marginBottom: 8,
                     }}
                   >
-                    MIRA SETIAWAN
+                    {draft.step1.nama}
                   </Text>
                   <View style={{ flexDirection: "row" }}>
                     <Text
@@ -502,7 +502,7 @@ export default function DetailPermohonan() {
                     <Text
                       style={{ fontFamily: "FiraSansRegular", fontSize: 14 }}
                     >
-                      : Jumat, 20 Mei 2022
+                      : {draft.step1.NIK}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
@@ -519,7 +519,7 @@ export default function DetailPermohonan() {
                     <Text
                       style={{ fontFamily: "FiraSansRegular", fontSize: 14 }}
                     >
-                      : 08.00 - 09.00 WIB
+                      : {draft.step1.jenisKelamin}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
@@ -533,35 +533,11 @@ export default function DetailPermohonan() {
                     >
                       Jenis Permohonan
                     </Text>
-                    <View
-                      style={{
-                        fontFamily: "FiraSansRegular",
-                        fontSize: 16,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 4,
-                      }}
+                    <Text
+                      style={{ fontFamily: "FiraSansRegular", fontSize: 14 }}
                     >
-                      <Text>: </Text>
-                      <View
-                        style={{
-                          backgroundColor: "red",
-                          paddingHorizontal: 10,
-                          paddingVertical: 5,
-                          borderRadius: 15,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: "white",
-                            fontFamily: "FiraSansMedium",
-                            fontSize: 14,
-                          }}
-                        >
-                          PEMBAYARAN GAGAL
-                        </Text>
-                      </View>
-                    </View>
+                      : {draft.jenisPermohonan}
+                    </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
                     <Text
@@ -577,7 +553,7 @@ export default function DetailPermohonan() {
                     <Text
                       style={{ fontFamily: "FiraSansRegular", fontSize: 14 }}
                     >
-                      : Jumat, 20 Mei 2022
+                      : {draft.jenisPaspor}
                     </Text>
                   </View>
                 </View>
