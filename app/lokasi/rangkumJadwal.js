@@ -62,12 +62,7 @@ export default function RangkumJadwal() {
     <SafeAreaView
       style={{
         backgroundColor: "#FFFFFF",
-        // height: "100%",
-        // alignItems: "center",
         flex: 1,
-        // paddingVertical: 50,
-        // paddingHorizontal: 50,
-        // rowGap: 20,
       }}
     >
       <ImageBackground

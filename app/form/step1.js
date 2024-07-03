@@ -20,15 +20,17 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function Step1() {
   const router = useRouter();
-  const [nama, setNama] = useState("Charlize");
-  const [NIK, setNIK] = useState("43948394293");
+  const [nama, setNama] = useState("Mira Setiawan");
+  const [NIK, setNIK] = useState("3171234567890123");
   const [tanggalLahir, setTanggalLahir] = useState(new Date());
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState("Perempuan");
   const [tanggalDikeluarkanKTP, setTanggalDikeluarkanKTP] = useState(
     new Date()
   );
-  const [kewarganegaraan, setKewarganegaraan] = useState("");
-  const [alamat, setAlamat] = useState("");
+  const [kewarganegaraan, setKewarganegaraan] = useState("Indonesia");
+  const [alamat, setAlamat] = useState(
+    "JL. PASTI CEPAT A7/66, RT 007/008, PEGADUNGAN, KALIDERES"
+  );
   const [provinsi, setProvinsi] = useState("");
   const [kabupaten, setKabupaten] = useState("");
   const [kecamatan, setKecamatan] = useState("");
@@ -176,8 +178,8 @@ export default function Step1() {
   };
 
   const genderOptions = [
-    { label: "Laki-laki", value: "laki-laki" },
-    { label: "Perempuan", value: "perempuan" },
+    { label: "Laki-laki", value: "Laki-laki" },
+    { label: "Perempuan", value: "Perempuan" },
   ];
 
   const nationalityOptions = [

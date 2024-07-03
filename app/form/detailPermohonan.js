@@ -135,7 +135,7 @@ export default function DetailPermohonan() {
             name="chevron-back"
             color={colors.white}
             size={26}
-            onPress={() => router.back()}
+            onPress={() => router.push("/home")}
           />
           <View>
             <Text style={styles.navbarText}>
@@ -177,7 +177,7 @@ export default function DetailPermohonan() {
               Tanggal Kedatangan
             </Text>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.selectedDate} Maret 2024
+              : {draft.selectedDate} Juli 2024
             </Text>
           </View>
           <View style={{ flexDirection: "row" }}>

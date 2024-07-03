@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
+const dayNames = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+
 const CustomCalendar = ({
   startDate,
   endDate,
   locationArray,
   monthNumber,
+  startDay = 3, // 0: Sen, 1: Sel, ..., 6: Ming
   onDayPress,
 }) => {
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [active, setActive] = useState(null);
 
-  console.log(locationArray);
   const isDateInRange = (date) => {
     return date >= startDate && date <= endDate;
   };
@@ -23,20 +25,14 @@ const CustomCalendar = ({
     const filterType = "reguler"; // Adjust based on your filter type (regular, fast, etc.)
     const monthData = locationArray[filterType];
 
-    console.log("mooo", monthData);
-
     const monthKey = monthNumber;
     if (monthData && monthData.length > 0) {
       monthData.forEach((monthObj) => {
         const monthKey = Object.keys(monthObj)[0];
         if (parseInt(monthKey, 10) === monthNumber) {
-          console.log("bjir", monthNumber);
           monthObj[monthKey].forEach((dayObj) => {
             const dayKey = parseInt(Object.keys(dayObj)[0], 10);
-            console.log("daykey", dayKey);
-            console.log(date);
             if (dayKey == date) {
-              console.log("kuota", dayObj[dayKey].kuota);
               quota = dayObj[dayKey].kuota;
               times = dayObj[dayKey].waktu;
               return { quota, times };
@@ -49,20 +45,14 @@ const CustomCalendar = ({
     return { quota, times };
   };
 
-  console.log(locationArray["reguler"]);
-
   const renderCalendarDay = (date) => {
     const isAvailable = isDateInRange(date);
     const { quota, times } = getQuotaForDate(date);
 
     const handleDayPress = () => {
       if (isAvailable) {
-        // Alert.alert("Quota Available", `Quota: ${quota}`, [
-        //   { text: "OK", onPress: () => console.log("OK Pressed") },
-        // ]);
         setSelectedDate(date);
         setActive(date);
-        console.log("inii", date);
         onDayPress(quota, times);
       } else {
         Alert.alert("No Quota", "There is no quota available for this date.", [
@@ -70,25 +60,58 @@ const CustomCalendar = ({
         ]);
       }
     };
-    console.log(selectedDate, date, "hi", active);
 
     return (
       <TouchableOpacity
-        style={[
-          styles.calendarDay,
-          date === active && styles.activeDay,
-          isAvailable && quota > 0 && date !== active && styles.availableDay,
-        ]}
+        // style={[
+        //   styles.calendarDay,
+        //   date === active && styles.activeDay,
+        //   isAvailable && quota > 0 && date !== active && styles.availableDay,
+        // ]}
+        style={{
+          margin: "auto",
+          flexDirection: "column",
+          alignItems: "center",
+          height: 70,
+        }}
         onPress={handleDayPress}
         disabled={quota === 0}
       >
-        <Text style={styles.dayText}>{(selectedDate, date)}</Text>
-        {isAvailable && <Text style={styles.quotaText}>{quota}</Text>}
+        {isAvailable && (
+          <Text style={quota != 0 ? styles.quotaText : styles.quotaTextNo}>
+            {quota}
+          </Text>
+        )}
+        <View
+          style={[
+            styles.calendarDay,
+            date === active && styles.activeDay,
+            isAvailable && quota > 0 && date !== active && styles.availableDay,
+          ]}
+        >
+          <Text style={styles.dayText}>{date}</Text>
+        </View>
       </TouchableOpacity>
     );
   };
 
   const generateCalendarDays = () => {
+    const totalDays = endDate - startDate + 1;
+    const daysArray = new Array(startDay).fill(null); // Prepend empty slots for the starting day
+    // for (let i = 0; i < totalDays; i++) {
+    //   daysArray.push(startDate + i);
+    // }
+    for (let date = startDate; date <= endDate; date++) {
+      daysArray.push(date);
+    }
+
+    // Fill the remaining days to complete the final week
+    while (daysArray.length % 7 !== 0) {
+      daysArray.push(null);
+    }
+
+    return daysArray;
+
     const calendarDays = [];
 
     for (let date = startDate; date <= endDate; date++) {
@@ -100,39 +123,72 @@ const CustomCalendar = ({
 
   return (
     <View style={styles.container}>
-      {generateCalendarDays().map((date) => (
-        <View key={date}>{renderCalendarDay(date)}</View>
-      ))}
+      <View style={styles.dayNamesContainer}>
+        {dayNames.map((dayName, index) => (
+          <Text key={index} style={styles.dayName}>
+            {dayName}
+          </Text>
+        ))}
+      </View>
+      <View style={styles.daysContainer}>
+        {generateCalendarDays().map((date, index) => (
+          <View key={index} style={styles.dayContainer}>
+            {date ? (
+              renderCalendarDay(date)
+            ) : (
+              <View style={styles.calendarDay} />
+            )}
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: "pink",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    // backgroundColor: "pink",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
   },
-  calendarDay: {
+  dayNamesContainer: {
+    flexDirection: "row",
+  },
+  dayName: {
     width: 50,
     height: 50,
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontWeight: "bold",
+    color: "#333",
+  },
+  daysContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    margin: 5,
-    borderRadius: 25,
-    borderWidth: 1,
+  },
+  dayContainer: {
+    width: "14.28%",
+    alignItems: "center",
+  },
+  calendarDay: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 5,
+    borderRadius: 8,
+    // borderWidth: 1,
     borderColor: "#ccc",
     backgroundColor: "#fff",
   },
   availableDay: {
-    backgroundColor: "green",
+    backgroundColor: "#CAFFCA",
   },
   activeDay: {
-    backgroundColor: "blue",
+    backgroundColor: "#FFBE69",
   },
   dayText: {
     fontSize: 16,
@@ -140,9 +196,16 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   quotaText: {
-    fontSize: 12,
-    color: "#fff",
-    marginTop: 5,
+    fontFamily: "FiraSansSemiBold",
+    fontSize: 14,
+    color: "#0AA00A",
+    marginTop: 2,
+  },
+  quotaTextNo: {
+    fontFamily: "FiraSansSemiBold",
+    fontSize: 14,
+    color: "white",
+    marginTop: 2,
   },
 });
 
