@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { colors } from "@/app/theme";
 
 const dayNames = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 
@@ -161,7 +162,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     fontWeight: "bold",
-    color: "#333",
+    color: colors.darkBlue,
+    fontFamily: "FiraSansMedium",
   },
   daysContainer: {
     flexDirection: "row",
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 5,
+    marginHorizontal: 0,
     borderRadius: 8,
     // borderWidth: 1,
     borderColor: "#ccc",

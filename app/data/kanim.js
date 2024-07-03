@@ -11,7 +11,7 @@ export const kanim = [
     jarak: 10,
     reguler: [
       {
-        3: [
+        7: [
           {
             1: {
               kuota: 28,
@@ -29,7 +29,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        3: [
+        7: [
           {
             1: {
               kuota: 60,
@@ -58,7 +58,7 @@ export const kanim = [
     jarak: 15,
     reguler: [
       {
-        3: [
+        7: [
           {
             1: {
               kuota: 20,
@@ -71,12 +71,36 @@ export const kanim = [
               waktu: ["13:00-14:00", "15:00-16:00"],
             },
           },
+          {
+            7: {
+              kuota: 10,
+              waktu: ["13:00-14:00", "15:00-16:00"],
+            },
+          },
+          {
+            14: {
+              kuota: 10,
+              waktu: ["13:00-14:00", "15:00-16:00"],
+            },
+          },
+          {
+            27: {
+              kuota: 10,
+              waktu: ["13:00-14:00", "15:00-16:00"],
+            },
+          },
+          {
+            28: {
+              kuota: 10,
+              waktu: ["13:00-14:00", "15:00-16:00"],
+            },
+          },
         ],
       },
     ],
     percepatan: [
       {
-        3: [
+        7: [
           {
             2: {
               kuota: 50,
@@ -105,7 +129,7 @@ export const kanim = [
     jarak: 50,
     reguler: [
       {
-        3: [
+        7: [
           {
             5: {
               kuota: 30,
@@ -123,7 +147,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        3: [
+        7: [
           {
             7: {
               kuota: 40,

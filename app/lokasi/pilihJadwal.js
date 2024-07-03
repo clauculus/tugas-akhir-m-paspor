@@ -68,6 +68,8 @@ export default function PilihJadwal() {
             fontFamily: "FiraSansMedium",
             fontSize: 28,
             textAlign: "center",
+            marginTop: 20,
+            marginBottom: 10,
           }}
         >
           Juli 2024
@@ -78,7 +80,7 @@ export default function PilihJadwal() {
           startDate={startDate}
           endDate={endDate}
           locationArray={detailLokasi.lokasi}
-          monthNumber={3}
+          monthNumber={7}
           onDayPress={handleDayPress}
         />
         {selectedDate && (
