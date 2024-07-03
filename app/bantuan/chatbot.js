@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
   inner: {
     flex: 1,
     justifyContent: "flex-end",
+    backgroundColor: "white",
   },
   messagesContainer: {
     paddingHorizontal: 20,
