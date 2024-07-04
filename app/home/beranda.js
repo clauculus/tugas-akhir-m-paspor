@@ -16,6 +16,9 @@ import { kotaPenyediaLayanan } from "../data/kota";
 import { kanim } from "../data/kanim";
 import { useRouter } from "expo-router";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modal, Portal } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Beranda() {
   const router = useRouter();
@@ -25,6 +28,19 @@ export default function Beranda() {
   const [tanggalAkhir, setTanggalAkhir] = useState("");
   const [isTanggalAwalPickerVisible, setTanggalAwalVisible] = useState(false);
   const [isTanggalAkhirPickerVisible, setTanggalAkhirVisible] = useState(false);
+
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: "white",
+    paddingTop: 20,
+    paddingBottom: 30,
+    paddingHorizontal: 35,
+    width: "85%",
+    margin: "auto",
+    borderRadius: 18,
+  };
 
   const hideTanggalAwalPicker = () => {
     setTanggalAwalVisible(false);
@@ -150,6 +166,17 @@ export default function Beranda() {
       },
     });
   };
+  const clearAsyncStorage = async () => {
+    try {
+      await AsyncStorage.removeItem("drafts");
+
+      console.log("done");
+      // Alert.alert("Success", "All data has been cleared from AsyncStorage!");
+    } catch (error) {
+      // Alert.alert("Error", "Failed to clear AsyncStorage!");
+      console.error("Failed to clear AsyncStorage:", error);
+    }
+  };
 
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
@@ -162,20 +189,107 @@ export default function Beranda() {
           source={require("../../assets/images/cover-home.png")}
           style={styles.imageBackground}
         >
+          <Portal>
+            <Modal
+              visible={visible}
+              onDismiss={hideModal}
+              contentContainerStyle={containerStyle}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Ionicons
+                  name="close"
+                  size={32}
+                  color="#D2D5D7"
+                  onPress={hideModal}
+                />
+              </View>
+              <Text
+                style={{
+                  fontFamily: "FiraSansMedium",
+                  fontSize: 20,
+                  textAlign: "center",
+                  color: colors.darkBlue,
+                  marginBottom: 20,
+                }}
+              >
+                Jenis Permohonan
+              </Text>
+              <View>
+                <Text style={{ fontFamily: "FiraSansMedium", fontSize: 18 }}>
+                  Permohonan Percepatan
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: "FiraSansRegular",
+                    fontSize: 15,
+                    color: colors.inactive,
+                    marginTop: 8,
+                    marginBottom: 15,
+                  }}
+                >
+                  • Proses pengerjaan{" "}
+                  <Text style={{ fontFamily: "FiraSansMedium" }}>4 hari</Text>
+                  {"\n"}• Pemohon cukup membayar biaya paspor
+                </Text>
+              </View>
+              <View>
+                <Text style={{ fontFamily: "FiraSansMedium", fontSize: 18 }}>
+                  Permohonan Reguler
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: "FiraSansRegular",
+                    fontSize: 15,
+                    color: colors.inactive,
+                    marginTop: 8,
+                    marginBottom: 15,
+                  }}
+                >
+                  • Proses pengerjaan{" "}
+                  <Text style={{ fontFamily: "FiraSansMedium" }}>1-2 jam</Text>
+                  {"\n"}• Pemohon dikenakan biaya tambahan Rp1.000.000 di luar
+                  biaya paspor paspor
+                </Text>
+              </View>
+            </Modal>
+          </Portal>
           <View style={styles.overlayContainer}>
             <Text style={styles.headerText}>Beranda</Text>
             <View style={styles.contentContainer}>
-              <View style={{ marginBottom: 10 }}>
-                <Text
+              <View
+                style={{
+                  marginBottom: 10,
+                }}
+              >
+                <View
                   style={{
-                    fontFamily: "FiraSansMedium",
-                    fontSize: 17,
-                    color: colors.darkBlue,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 6,
                   }}
                 >
-                  Jenis Permohonan
-                  <Text style={{ color: "red" }}> *</Text>
-                </Text>
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansMedium",
+                      fontSize: 17,
+                      color: colors.darkBlue,
+                    }}
+                  >
+                    Jenis Permohonan
+                    <Text style={{ color: "red" }}> *</Text>
+                  </Text>
+                  <Ionicons
+                    name="information-circle"
+                    size={22}
+                    color={"#9B9A9A"}
+                    onPress={showModal}
+                  />
+                </View>
                 <Radio.Group
                   name="myRadioGroup"
                   value={jenisPermohonan}
@@ -419,6 +533,7 @@ export default function Beranda() {
             </View>
           </ScrollView>
         </View>
+        {/* <Button title="Clear AsyncStorage" onPress={clearAsyncStorage} /> */}
       </ScrollView>
     </SafeAreaView>
   );

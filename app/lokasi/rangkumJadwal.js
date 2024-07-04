@@ -5,12 +5,16 @@ import {
   TextInput,
   ImageBackground,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
+
+import { Button, Select } from "native-base";
+import Checkbox from "expo-checkbox";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { colors } from "./../theme";
-import { Button, Select } from "native-base";
+import { Modal, Portal } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -20,6 +24,24 @@ export default function RangkumJadwal() {
     useLocalSearchParams();
   const detailLokasi = JSON.parse(lokasi);
   const [jenisPaspor, setJenisPaspor] = useState(null);
+
+  const [isSelected, setSelection] = useState(false);
+  const [isSelected2, setSelection2] = useState(false);
+
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  const [step, setStep] = useState(false);
+  const containerStyle = {
+    backgroundColor: "white",
+    paddingTop: 20,
+    paddingBottom: 35,
+    paddingHorizontal: 30,
+    width: "85%",
+    margin: "auto",
+    borderRadius: 18,
+  };
 
   const saveDraft = async (draft) => {
     try {
@@ -33,6 +55,15 @@ export default function RangkumJadwal() {
       return draftId;
     } catch (error) {
       console.error("Failed to save the draft", error);
+    }
+  };
+
+  const handleLanjut = () => {
+    if (step) {
+      hideModal();
+      handleSaveAndRedirect();
+    } else {
+      setStep(true);
     }
   };
 
@@ -69,6 +100,201 @@ export default function RangkumJadwal() {
         source={require("../../assets/images/gradient-bg.png")}
         style={styles.navbar}
       >
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={containerStyle}
+          >
+            {step ? (
+              <View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Ionicons
+                    name="close"
+                    size={32}
+                    color="#D2D5D7"
+                    onPress={hideModal}
+                  />
+                </View>
+                <Text
+                  style={{
+                    fontFamily: "FiraSansRegular",
+                    fontSize: 16,
+                    color: colors.inactive,
+                    marginBottom: 20,
+                  }}
+                >
+                  Mohon isi kuesioner dengan{" "}
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansMedium",
+                      color: colors.darkBlue,
+                    }}
+                  >
+                    data yang benar
+                  </Text>
+                </Text>
+
+                <Text
+                  style={{
+                    fontFamily: "FiraSansRegular",
+                    fontSize: 16,
+                    color: colors.inactive,
+                    marginBottom: 20,
+                  }}
+                >
+                  Pemberian keterangan yang tidak benar merupakan{" "}
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansMedium",
+                      color: colors.darkBlue,
+                    }}
+                  >
+                    pelanggaran peraturan keimigrasian
+                  </Text>{" "}
+                  dan akan mengakibatkan permohonan paspor Anda ditolak dan
+                  pembayaran tidak dapat dikembalikan.
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 14,
+                  }}
+                >
+                  <Checkbox value={isSelected2} onValueChange={setSelection2} />
+
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansRegular",
+                      fontSize: 14,
+                      color: colors.darkBlue,
+                      width: "80%",
+                    }}
+                  >
+                    Ya, saya akan mengisi kuesioner dengan data yang benar
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Ionicons
+                    name="close"
+                    size={32}
+                    color="#D2D5D7"
+                    onPress={hideModal}
+                  />
+                </View>
+                <Ionicons
+                  name="alert-circle"
+                  color="red"
+                  style={{ margin: "auto", marginBottom: 10 }}
+                  size={32}
+                />
+                <Text
+                  style={{
+                    fontFamily: "FiraSansMedium",
+                    fontSize: 22,
+                    textAlign: "center",
+                    color: colors.darkBlue,
+                    marginBottom: 20,
+                  }}
+                >
+                  Peringatan
+                </Text>
+                <View>
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansRegular",
+                      fontSize: 16,
+                      color: colors.inactive,
+                    }}
+                  >
+                    Anda harus menyelesaikan{" "}
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      pengisian kuesioner paspor
+                    </Text>{" "}
+                    dan pembayaran dalam durasi 2 jam.
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansRegular",
+                      fontSize: 16,
+                      color: colors.inactive,
+                      marginTop: 20,
+                      marginBottom: 20,
+                    }}
+                  >
+                    Kuota permohonan paspor akan disimpan dalam jangka waktu
+                    tersebut.
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 14,
+                  }}
+                >
+                  <Checkbox value={isSelected} onValueChange={setSelection} />
+
+                  <Text
+                    style={{
+                      fontFamily: "FiraSansRegular",
+                      fontSize: 14,
+                      color: colors.darkBlue,
+                      width: "80%",
+                    }}
+                  >
+                    Ya, saya akan menyelesaikan pengisian kuesioner paspor dan
+                    pembayaran dalam 2 jamm
+                  </Text>
+                </View>
+              </View>
+            )}
+            <TouchableOpacity
+              style={{
+                marginTop: 20,
+                backgroundColor: (step ? isSelected2 : isSelected)
+                  ? colors.darkBlue
+                  : "#91A9BA",
+                width: "100%",
+                borderRadius: 12,
+                height: 48,
+                margin: "auto",
+              }}
+              disabled={step ? !isSelected2 : !isSelected}
+              onPress={handleLanjut}
+            >
+              <Text
+                style={{
+                  color: colors.white,
+                  fontSize: 16,
+                  fontFamily: "FiraSansMedium",
+                  margin: "auto",
+                }}
+              >
+                Lanjut
+              </Text>
+            </TouchableOpacity>
+          </Modal>
+        </Portal>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Ionicons
             name="chevron-back"
@@ -155,7 +381,9 @@ export default function RangkumJadwal() {
             margin: "auto",
             marginBottom: 10,
           }}
-          onPress={handleSaveAndRedirect}
+          onPress={showModal}
+
+          // onPress={handleSaveAndRedirect}
         >
           <Text
             style={{
