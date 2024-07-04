@@ -15,9 +15,26 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { colors } from "./theme";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FirstRoute = ({ data, setData }) => {
+  const router = useRouter();
   const [temporaryData, setTemporaryData] = useState(`${data}`);
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const storedLoginStatus = await AsyncStorage.getItem("isLoggedIn");
+      if (storedLoginStatus === "true") {
+        router.push("/home/beranda");
+      }
+    } catch (error) {
+      console.log("Failed to load login status", error);
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>

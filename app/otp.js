@@ -7,12 +7,14 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
+  Alert,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
 import { Button, Input } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors } from "./theme";
 import { useRouter } from "expo-router";
 
@@ -33,6 +35,34 @@ export default function OTPScreen() {
   const handleKeyPress = (e, index) => {
     if (e.nativeEvent.key === "Backspace" && otp[index] === "" && index > 0) {
       otpRefs[index - 1].current.focus();
+    }
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const storedLoginStatus = await AsyncStorage.getItem("isLoggedIn");
+      if (storedLoginStatus === "true") {
+        setIsLoggedIn(true);
+        router.push("/onboarding");
+      }
+    } catch (error) {
+      console.log("Failed to load login status", error);
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      await AsyncStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true);
+      router.push("/onboarding");
+    } catch (error) {
+      console.log("Failed to save login status", error);
     }
   };
 
@@ -147,7 +177,7 @@ export default function OTPScreen() {
               borderRadius: 12,
               height: 48,
             }}
-            onPress={() => router.push("/onboarding")}
+            onPress={handleLogin}
           >
             <Text
               style={{

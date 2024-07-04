@@ -9,6 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "../theme";
 import React, { useState, useEffect } from "react";
 import { Button } from "native-base";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,8 +17,13 @@ import { Ionicons } from "@expo/vector-icons";
 export default function Profil() {
   const router = useRouter();
 
-  const handleLogOut = () => {
-    router.push("/");
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.setItem("isLoggedIn", "false");
+      router.push("/");
+    } catch (error) {
+      console.log("Failed to remove login status", error);
+    }
   };
 
   return (
@@ -143,7 +149,7 @@ export default function Profil() {
               height: 51,
               justifyContent: "left",
             }}
-            onPress={handleLogOut}
+            onPress={handleLogout}
           >
             <View
               style={{
