@@ -25,6 +25,126 @@ export default function DetailPermohonan() {
   const [expandedDetail, setExpandedDetail] = useState(false);
   const [expandedBukti, setExpandedBukti] = useState(false);
 
+  const twoHoursInMillis = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+  const targetTime = new Date(draft.createdAt).getTime() + twoHoursInMillis;
+  const [remainingTime, setRemainingTime] = useState(
+    targetTime - new Date().getTime()
+  );
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        const currentTime = targetTime - new Date().getTime();
+        if (currentTime <= 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return currentTime;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, [targetTime]);
+
+  const formatTime = (time) => {
+    const totalSeconds = Math.floor(time / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 4,
+          padding: 4,
+          borderRadius: 4,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            backgroundColor: colors.darkGreen,
+            padding: 4,
+            borderRadius: 4,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              color: "white",
+              fontSize: 16,
+            }}
+          >
+            {isNaN(hours.toString().padStart(2, "0"))
+              ? "00"
+              : hours.toString().padStart(2, "0")}
+          </Text>
+        </View>
+        <Text
+          style={{
+            fontFamily: "FiraSansMedium",
+            color: colors.darkGreen,
+            fontSize: 16,
+          }}
+        >
+          :
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            backgroundColor: colors.darkGreen,
+            padding: 4,
+            borderRadius: 4,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              color: "white",
+              fontSize: 16,
+            }}
+          >
+            {isNaN(minutes.toString().padStart(2, "0"))
+              ? "00"
+              : minutes.toString().padStart(2, "0")}
+          </Text>
+        </View>
+        <Text
+          style={{
+            fontFamily: "FiraSansMedium",
+            color: colors.darkGreen,
+            fontSize: 16,
+          }}
+        >
+          :
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            backgroundColor: colors.darkGreen,
+            padding: 4,
+            borderRadius: 4,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              color: "white",
+              fontSize: 16,
+            }}
+          >
+            {isNaN(seconds.toString().padStart(2, "0"))
+              ? "00"
+              : seconds.toString().padStart(2, "0")}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
   useEffect(() => {
     const fetchDraft = async () => {
       try {
@@ -35,7 +155,7 @@ export default function DetailPermohonan() {
           const draftIndex = drafts.findIndex((d) => d.id == draftId);
           setDraft(drafts[draftIndex]);
           setStatus(drafts[draftIndex].status);
-          console.log("ini draft");
+          console.log("ini draft", draft);
         }
       } catch (error) {
         console.error("Failed to fetch the draft", error);
@@ -165,6 +285,7 @@ export default function DetailPermohonan() {
               </Text>
             )}
           </View>
+          {/* <Text style={styles.timerText}>{formatTime(remainingTime)}</Text> */}
           <View style={{ flexDirection: "row" }}>
             <Text
               style={{
@@ -262,10 +383,11 @@ export default function DetailPermohonan() {
                 backgroundColor: "#CAFFCA",
                 marginVertical: 10,
                 paddingVertical: 12,
-                paddingHorizontal: 20,
+                paddingHorizontal: 16,
                 borderRadius: 8,
                 flexDirection: "row",
                 justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <Text
@@ -276,7 +398,9 @@ export default function DetailPermohonan() {
               >
                 Selesaikan dalam
               </Text>
-              <Text>02:00:00</Text>
+              <Text style={{ fontFamily: "FiraSansMedium", fontSize: 17 }}>
+                {formatTime(remainingTime)}
+              </Text>
             </View>
             <View
               style={{
