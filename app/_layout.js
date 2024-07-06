@@ -86,6 +86,14 @@ export default function RootLayout() {
             <Stack.Screen name="lokasi" options={{ headerShown: false }} />
             <Stack.Screen name="form" options={{ headerShown: false }} />
             <Stack.Screen name="bantuan" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="notification"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="detailNotification"
+              options={{ headerShown: false }}
+            />
           </Stack>
         </SafeAreaProvider>
       </NativeBaseProvider>
