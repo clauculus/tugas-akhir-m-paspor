@@ -259,7 +259,23 @@ export default function Beranda() {
             </Modal>
           </Portal>
           <View style={styles.overlayContainer}>
-            <Text style={styles.headerText}>Beranda</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.headerText}>Beranda</Text>
+              <Ionicons
+                name="notifications"
+                size={30}
+                color={"white"}
+                onPress={() => {
+                  router.push("/notification");
+                }}
+              />
+            </View>
             <View style={styles.contentContainer}>
               <View
                 style={{

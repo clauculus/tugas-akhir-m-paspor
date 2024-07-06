@@ -25,7 +25,7 @@ export default function DetailPermohonan() {
   const [expandedDetail, setExpandedDetail] = useState(false);
   const [expandedBukti, setExpandedBukti] = useState(false);
 
-  const twoHoursInMillis = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+  const twoHoursInMillis = 2 * 60 * 60 * 1000;
   const targetTime = new Date(draft.createdAt).getTime() + twoHoursInMillis;
   const [remainingTime, setRemainingTime] = useState(
     targetTime - new Date().getTime()
@@ -42,7 +42,7 @@ export default function DetailPermohonan() {
       });
     }, 1000);
 
-    return () => clearInterval(timer); // Cleanup on unmount
+    return () => clearInterval(timer);
   }, [targetTime]);
 
   const formatTime = (time) => {
