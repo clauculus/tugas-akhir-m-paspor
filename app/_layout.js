@@ -73,8 +73,8 @@ export default function RootLayout() {
   }
 
   return (
-    <PaperProvider>
-      <NativeBaseProvider theme={customTheme}>
+    <NativeBaseProvider theme={customTheme}>
+      <PaperProvider>
         <SafeAreaProvider>
           <Stack>
             <Stack.Screen name="home" options={{ headerShown: false }} />
@@ -96,7 +96,7 @@ export default function RootLayout() {
             />
           </Stack>
         </SafeAreaProvider>
-      </NativeBaseProvider>
-    </PaperProvider>
+      </PaperProvider>
+    </NativeBaseProvider>
   );
 }

@@ -8,6 +8,7 @@ const colors = {
   lightBlue: "#E8F7F5",
   green: "#0FC70F",
   yellow: "#FFAC00",
+  inactiveGrey: "#BBBBBB",
 };
 
 export { colors };
