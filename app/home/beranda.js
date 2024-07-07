@@ -166,6 +166,7 @@ export default function Beranda() {
       },
     });
   };
+
   const clearAsyncStorage = async () => {
     try {
       await AsyncStorage.removeItem("drafts");
