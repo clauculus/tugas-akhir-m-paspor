@@ -660,7 +660,10 @@ export default function DetailPermohonan() {
                     <Text
                       style={{ fontFamily: "FiraSansRegular", fontSize: 14 }}
                     >
-                      : {draft.jenisPermohonan}
+                      :{" "}
+                      {draft.jenisPermohonan == "reguler"
+                        ? "Reguler"
+                        : "Percepatan"}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>

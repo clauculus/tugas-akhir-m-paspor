@@ -25,7 +25,7 @@ export default function DetailLokasi() {
         source={require("../../assets/images/lokasi-map.png")}
         style={{
           // marginHorizontal: 10,
-          height: "60%",
+          height: "70%",
         }}
       />
       <View

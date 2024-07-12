@@ -230,7 +230,7 @@ const BottomModal = ({
                       }}
                     >
                       {tanggalAwal
-                        ? formatDateIndonesian(tanggalAwal)
+                        ? formatDateIndonesian(new Date(tanggalAwal))
                         : "Pilih tanggal"}
                     </Text>
                   </TouchableOpacity>
@@ -277,7 +277,7 @@ const BottomModal = ({
                       }}
                     >
                       {tanggalAkhir
-                        ? formatDateIndonesian(tanggalAkhir)
+                        ? formatDateIndonesian(new Date(tanggalAkhir))
                         : "Pilih tanggal"}
                     </Text>
                   </TouchableOpacity>
@@ -358,6 +358,7 @@ export default function HasilPencarian() {
   const [lokasi, setLokasi] = useState(JSON.parse(results));
   const [filter, setFilter] = useState(JSON.parse(filters));
 
+  const [jenisPaspor, setJenisPaspor] = useState("biasa");
   const [jenisPermohonan, setJenisPermohonan] = useState(
     filter.jenisPermohonan
   );
@@ -407,11 +408,15 @@ export default function HasilPencarian() {
   console.log("filter", filter);
 
   const filterLocations = (listLokasi, filters) => {
-    const { jenisPermohonan, kota, tanggalAwal, tanggalAkhir } = filters;
+    let { jenisPermohonan, kota, tanggalAwal, tanggalAkhir } = filters;
     const resultsWithKuota = [];
     const resultsWithoutKuota = [];
     listLokasi.forEach((lokasi) => {
       if (kota && lokasi.kota !== kota) return;
+
+      if (jenisPaspor === "biasa" && !lokasi.isBiasa) return;
+      if (jenisPaspor === "elektronik" && !lokasi.isElektronik) return;
+      if (jenisPaspor === "polikarbonat" && !lokasi.isPolikarbonat) return;
 
       const monthData = lokasi[jenisPermohonan];
 
@@ -421,6 +426,8 @@ export default function HasilPencarian() {
 
       if (tanggalAwal && tanggalAkhir) {
         console.log(tanggalAwal, tanggalAkhir);
+        tanggalAwal = new Date(tanggalAwal);
+        tanggalAkhir = new Date(tanggalAkhir);
         const startMonth = tanggalAwal.getMonth() + 1;
         const startDay = tanggalAwal.getDate();
         const endMonth = tanggalAkhir.getMonth() + 1;
@@ -478,6 +485,10 @@ export default function HasilPencarian() {
     return { resultsWithKuota, resultsWithoutKuota };
   };
 
+  useEffect(() => {
+    handleCariKuota();
+  }, [jenisPaspor]);
+
   const handleCariKuota = () => {
     const filters = {
       jenisPermohonan,
@@ -488,15 +499,6 @@ export default function HasilPencarian() {
     const results = filterLocations(kanim, filters);
     setLokasi(results);
     setFilter(filters);
-    // console.log(JSON.stringify(results));
-
-    // router.push({
-    //   pathname: "/lokasi/hasilPencarian",
-    //   params: {
-    //     results: JSON.stringify(results),
-    //     filters: JSON.stringify(filters),
-    //   },
-    // });
   };
 
   return (
@@ -597,7 +599,67 @@ export default function HasilPencarian() {
           </View>
         </Modal>
       </Portal>
-      <ScrollView style={{ flex: 1, padding: 24 }}>
+      <View style={{ paddingTop: 24, paddingBottom: 8, paddingHorizontal: 24 }}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontFamily: "FiraSansMedium",
+            color: colors.darkBlue,
+          }}
+        >
+          Jenis Paspor
+        </Text>
+        <View>
+          <Radio.Group
+            name="myRadioGroup"
+            value={jenisPaspor}
+            onChange={(e) => setJenisPaspor(e)}
+            style={{ flexDirection: "row" }}
+          >
+            <Radio value="biasa" my="1" size="sm">
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 15,
+                  color: colors.darkBlue,
+                }}
+              >
+                Biasa
+              </Text>
+            </Radio>
+            <Radio value="elektronik" my="1" ml="3" size="sm">
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 15,
+                  color: colors.darkBlue,
+                }}
+              >
+                Elektronik
+              </Text>
+            </Radio>
+            <Radio value="polikarbonat" my="1" ml="3" size="sm">
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 15,
+                  color: colors.darkBlue,
+                }}
+              >
+                Polikarbonat
+              </Text>
+            </Radio>
+          </Radio.Group>
+        </View>
+      </View>
+      <ScrollView
+        style={{
+          flex: 1,
+          paddingBottom: 24,
+          paddingHorizontal: 24,
+          paddingTop: 8,
+        }}
+      >
         {/* <Text>Results with Quota</Text> */}
         {lokasi.resultsWithKuota.map((item, index) => (
           <View

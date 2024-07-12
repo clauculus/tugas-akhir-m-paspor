@@ -78,6 +78,7 @@ export default function Beranda() {
 
   const filterLocations = (listLokasi, filters) => {
     const { jenisPermohonan, kota, tanggalAwal, tanggalAkhir } = filters;
+
     const resultsWithKuota = [];
     const resultsWithoutKuota = [];
     listLokasi.forEach((lokasi) => {
@@ -309,6 +310,7 @@ export default function Beranda() {
                 </View>
                 <Radio.Group
                   name="myRadioGroup"
+                  defaultValue="reguler"
                   value={jenisPermohonan}
                   onChange={(e) => setJenisPermohonan(e)}
                   style={{ flexDirection: "row" }}
