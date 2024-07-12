@@ -35,6 +35,7 @@ const BottomModal = ({
   setTanggalAwal,
   tanggalAkhir,
   setTanggalAkhir,
+  onReset,
 }) => {
   const [slideAnim] = useState(new Animated.Value(0));
   const [isTanggalAwalPickerVisible, setTanggalAwalVisible] = useState(false);
@@ -295,14 +296,7 @@ const BottomModal = ({
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <Button
-              // onPress={() =>
-              //   router.push({
-              //     pathname: "/lokasi/detailLokasi",
-              //     params: {
-              //       lokasi: JSON.stringify(item),
-              //     },
-              //   })
-              // }
+              onPress={onReset}
               style={{
                 width: "48%",
                 backgroundColor: colors.white,
@@ -404,8 +398,8 @@ export default function HasilPencarian() {
     });
   };
 
-  console.log("ini", lokasi.resultsWithKuota);
-  console.log("filter", filter);
+  // console.log("ini", lokasi.resultsWithKuota);
+  // console.log("filter", filter);
 
   const filterLocations = (listLokasi, filters) => {
     let { jenisPermohonan, kota, tanggalAwal, tanggalAkhir } = filters;
@@ -425,7 +419,7 @@ export default function HasilPencarian() {
       let totalKuota = 0;
 
       if (tanggalAwal && tanggalAkhir) {
-        console.log(tanggalAwal, tanggalAkhir);
+        // console.log(tanggalAwal, tanggalAkhir);
         tanggalAwal = new Date(tanggalAwal);
         tanggalAkhir = new Date(tanggalAkhir);
         const startMonth = tanggalAwal.getMonth() + 1;
@@ -433,16 +427,16 @@ export default function HasilPencarian() {
         const endMonth = tanggalAkhir.getMonth() + 1;
         const endDay = tanggalAkhir.getDate();
 
-        console.log("startMonth", startMonth);
-        console.log("startDay", startDay);
-        console.log("endMonth", endMonth);
-        console.log("endDay", endDay);
+        // console.log("startMonth", startMonth);
+        // console.log("startDay", startDay);
+        // console.log("endMonth", endMonth);
+        // console.log("endDay", endDay);
 
         monthData.forEach((monthObj) => {
           const monthKey = Object.keys(monthObj)[0];
           const monthInt = parseInt(monthKey, 10);
-          console.log("monthKey", monthKey);
-          console.log("monthInt", monthInt);
+          // console.log("monthKey", monthKey);
+          // console.log("monthInt", monthInt);
 
           if (monthInt >= startMonth && monthInt <= endMonth) {
             monthObj[monthKey].forEach((dayObj) => {
@@ -457,11 +451,11 @@ export default function HasilPencarian() {
                   dayKey <= endDay) ||
                 (monthInt > startMonth && monthInt < endMonth)
               ) {
-                console.log(
-                  "kuota ditambah pada",
-                  dayKey,
-                  dayObj[dayKey].kuota
-                );
+                // console.log(
+                //   "kuota ditambah pada",
+                //   dayKey,
+                //   dayObj[dayKey].kuota
+                // );
                 totalKuota += dayObj[dayKey].kuota;
               }
             });
@@ -488,6 +482,13 @@ export default function HasilPencarian() {
   useEffect(() => {
     handleCariKuota();
   }, [jenisPaspor]);
+
+  const handleReset = () => {
+    setKota("");
+    setTanggalAkhir("");
+    setTanggalAwal("");
+    handleCariKuota();
+  };
 
   const handleCariKuota = () => {
     const filters = {
@@ -1208,6 +1209,7 @@ export default function HasilPencarian() {
         setTanggalAwal={setTanggalAwal}
         tanggalAkhir={tanggalAkhir}
         setTanggalAkhir={setTanggalAkhir}
+        onReset={handleReset}
       />
     </SafeAreaView>
   );

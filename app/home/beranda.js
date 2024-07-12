@@ -22,7 +22,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function Beranda() {
   const router = useRouter();
-  const [jenisPermohonan, setJenisPermohonan] = useState("");
+  const [jenisPermohonan, setJenisPermohonan] = useState("reguler");
   const [kota, setKota] = useState("");
   const [tanggalAwal, setTanggalAwal] = useState("");
   const [tanggalAkhir, setTanggalAkhir] = useState("");
