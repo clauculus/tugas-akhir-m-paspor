@@ -255,7 +255,7 @@ export default function Beranda() {
                   • Proses pengerjaan{" "}
                   <Text style={{ fontFamily: "FiraSansMedium" }}>1-2 jam</Text>
                   {"\n"}• Pemohon dikenakan biaya tambahan Rp1.000.000 di luar
-                  biaya paspor paspor
+                  biaya paspor
                 </Text>
               </View>
             </Modal>

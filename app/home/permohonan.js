@@ -48,7 +48,9 @@ const FirstRoute = ({ data, setData }) => {
     const fetchDraft = async () => {
       try {
         const existingDrafts = await AsyncStorage.getItem("drafts");
-        const drafts = existingDrafts ? JSON.parse(existingDrafts) : [];
+        let drafts = existingDrafts ? JSON.parse(existingDrafts) : [];
+        drafts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        console.log(drafts);
         setDrafts(drafts);
         console.log(drafts);
       } catch (error) {
@@ -57,7 +59,10 @@ const FirstRoute = ({ data, setData }) => {
     };
 
     fetchDraft();
+    console.log("tes");
   }, []);
+
+  // console.log(drafts[1].step1.nama);
 
   return (
     <ScrollView
@@ -90,122 +95,162 @@ const FirstRoute = ({ data, setData }) => {
       >
         Kode OTP akan dikirim ke nomor di atas
       </Text> */}
-      {drafts.map((draft) => (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-            shadowColor: "#000",
-            shadowOffset: { width: 1, height: 1 },
-            shadowOpacity: 0.25,
-            shadowRadius: 6,
-            elevation: 1,
-            borderRadius: 18,
-            padding: 23,
-            borderWidth: 0.5,
-            borderColor: "#6FA39A",
-            gap: 6,
-          }}
-          key={draft.id}
-          onPress={() => handleDetail(draft.id)}
-        >
-          <Text
+      {drafts.length > 0 &&
+        drafts.map((draft) => (
+          <TouchableOpacity
             style={{
-              fontSize: 20,
-              color: colors.darkBlue,
-              fontFamily: "FiraSansMedium",
-              marginBottom: 8,
+              backgroundColor: "white",
+              shadowColor: "#000",
+              shadowOffset: { width: 1, height: 1 },
+              shadowOpacity: 0.25,
+              shadowRadius: 6,
+              elevation: 1,
+              borderRadius: 18,
+              padding: 23,
+              borderWidth: 0.5,
+              borderColor: "#6FA39A",
+              gap: 6,
+              marginBottom: 24,
             }}
+            key={draft.id}
+            onPress={() => handleDetail(draft.id)}
           >
-            {draft.step1.nama}
-          </Text>
-          <View style={{ flexDirection: "row" }}>
             <Text
               style={{
-                width: "36%",
-                fontSize: 16,
+                fontSize: 20,
                 color: colors.darkBlue,
                 fontFamily: "FiraSansMedium",
+                marginBottom: 8,
               }}
             >
-              Lokasi
+              {draft.step1.nama}
             </Text>
-            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.detailLokasi.lokasi.nama}
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                width: "36%",
-                fontSize: 16,
-                color: colors.darkBlue,
-                fontFamily: "FiraSansMedium",
-              }}
-            >
-              Tanggal Kedatangan
-            </Text>
-            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.selectedDate}
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                width: "36%",
-                fontSize: 16,
-                color: colors.darkBlue,
-                fontFamily: "FiraSansMedium",
-              }}
-            >
-              Jam Kedatangan
-            </Text>
-            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.selectedTime}
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                width: "36%",
-                fontSize: 16,
-                color: colors.darkBlue,
-                fontFamily: "FiraSansMedium",
-              }}
-            >
-              Status
-            </Text>
-            <View
-              style={{
-                fontFamily: "FiraSansRegular",
-                fontSize: 16,
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Text>: </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={{
+                  width: "36%",
+
+                  fontSize: 16,
+                  color: colors.darkBlue,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Lokasi
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                }}
+              >
+                {": "}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                  width: "64%",
+                }}
+              >
+                {draft.detailLokasi.lokasi.nama.toUpperCase()}
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={{
+                  width: "36%",
+                  fontSize: 16,
+                  color: colors.darkBlue,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Tanggal Kedatangan
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                }}
+              >
+                {": "}
+              </Text>
+              <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+                {draft.selectedDate} JULI 2024
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={{
+                  width: "36%",
+                  fontSize: 16,
+                  color: colors.darkBlue,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Jam Kedatangan
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                }}
+              >
+                {": "}
+              </Text>
+              <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+                {draft.selectedTime} WIB
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={{
+                  width: "36%",
+                  fontSize: 16,
+                  color: colors.darkBlue,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Status
+              </Text>
               <View
                 style={{
-                  backgroundColor: getColor(draft.status),
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                  borderRadius: 15,
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 4,
                 }}
               >
                 <Text
                   style={{
-                    color: "white",
-                    fontFamily: "FiraSansMedium",
-                    fontSize: 14,
+                    fontFamily: "FiraSansRegular",
+                    fontSize: 16,
                   }}
                 >
-                  {draft.status.toUpperCase()}
+                  {": "}
                 </Text>
+                <View
+                  style={{
+                    backgroundColor: getColor(draft.status),
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    borderRadius: 15,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontFamily: "FiraSansMedium",
+                      fontSize: 14,
+                    }}
+                  >
+                    {draft.status.toUpperCase()}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableOpacity>
-      ))}
+          </TouchableOpacity>
+        ))}
     </ScrollView>
   );
 };
@@ -497,7 +542,6 @@ const styles = StyleSheet.create({
     // transform: [{ translateY: 250 }], // Adjust this value as needed to center the form vertically
     width: "100%",
     alignSelf: "center",
-    backgroundColor: "pink",
     // paddingHorizontal: 20,
     // paddingBottom: 20,
     // paddingTop: 10,

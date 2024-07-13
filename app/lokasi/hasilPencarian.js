@@ -572,9 +572,9 @@ export default function HasilPencarian() {
           </Text>
           <View>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              Kuota pembukaan paspor untuk bulan Juli akan dibuka pada{" "}
+              Kuota permohonan paspor selanjutnya akan dibuka pada{" "}
               <Text style={{ fontFamily: "FiraSansSemiBold" }}>
-                Senin, 3 Juni 2024
+                Senin, 4 Agustus 2024
               </Text>
             </Text>
             <Button
@@ -821,6 +821,8 @@ export default function HasilPencarian() {
                     pathname: "/lokasi/detailLokasi",
                     params: {
                       lokasi: JSON.stringify(item),
+                      jenisPermohonan: filter.jenisPermohonan,
+                      isPilihKantor: true,
                     },
                   })
                 }
@@ -999,6 +1001,8 @@ export default function HasilPencarian() {
                     pathname: "/lokasi/detailLokasi",
                     params: {
                       lokasi: JSON.stringify(item),
+                      jenisPermohonan: filter.jenisPermohonan,
+                      isPilihKantor: false,
                     },
                   })
                 }

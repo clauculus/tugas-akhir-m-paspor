@@ -5,13 +5,30 @@ import { useState } from "react";
 import { colors } from "./../theme";
 import { Button } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
+import { Modal, Portal } from "react-native-paper";
 
 export default function DetailLokasi() {
   const router = useRouter();
-  const { lokasi } = useLocalSearchParams();
+  const { lokasi, jenisPermohonan, isPilihKantor } = useLocalSearchParams();
   const detailLokasi = JSON.parse(lokasi);
+  const [namaKantor, setNamaKantor] = useState("");
+  const [visible, setVisible] = useState(false);
 
-  console.log(detailLokasi);
+  const containerStyle = {
+    backgroundColor: "white",
+    paddingTop: 20,
+    paddingBottom: 30,
+    paddingHorizontal: 35,
+    width: "85%",
+    margin: "auto",
+    borderRadius: 18,
+  };
+
+  const showModal = (item) => {
+    setNamaKantor(item.lokasi.nama);
+    setVisible(true);
+  };
+  const hideModal = () => setVisible(false);
 
   return (
     <SafeAreaView
@@ -142,35 +159,117 @@ export default function DetailLokasi() {
               </Text>
             </View>
           </View>
-          <Button
-            onPress={() =>
-              router.push({
-                pathname: "/lokasi/pilihJadwal",
-                params: {
-                  lokasi: JSON.stringify(item),
-                  jenisPermohonan: filter.jenisPermohonan,
-                },
-              })
-            }
-            style={{
-              width: "100%",
-              backgroundColor: colors.darkBlue,
-              height: 48,
-              borderRadius: 12,
-            }}
-          >
-            <Text
+          {isPilihKantor == "true" ? (
+            <Button
+              onPress={() =>
+                router.push({
+                  pathname: "/lokasi/pilihJadwal",
+                  params: {
+                    lokasi: JSON.stringify(detailLokasi),
+                    jenisPermohonan: jenisPermohonan,
+                  },
+                })
+              }
               style={{
-                color: "white",
-                fontSize: 16,
-                fontFamily: "FiraSansMedium",
+                width: "100%",
+                backgroundColor: colors.darkBlue,
+                height: 48,
+                borderRadius: 12,
               }}
             >
-              Pilih Kantor
-            </Text>
-          </Button>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 16,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Pilih Kantor
+              </Text>
+            </Button>
+          ) : (
+            <Button
+              onPress={() => showModal(detailLokasi)}
+              style={{
+                // width: "48%",
+                backgroundColor: colors.darkGreen,
+                height: 48,
+                borderRadius: 12,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 16,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Aktifkan Notifikasi
+              </Text>
+            </Button>
+          )}
         </View>
       </View>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={containerStyle}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Ionicons
+              name="close"
+              size={32}
+              color="#D2D5D7"
+              onPress={hideModal}
+            />
+          </View>
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              fontSize: 20,
+              // textAlign: "center",
+              color: colors.darkBlue,
+              marginBottom: 20,
+            }}
+          >
+            Pembukaan Kuota di {namaKantor}
+          </Text>
+          <View>
+            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              Kuota permohonan paspor selanjutnya akan dibuka pada{" "}
+              <Text style={{ fontFamily: "FiraSansSemiBold" }}>
+                Senin, 4 Agustus 2024
+              </Text>
+            </Text>
+            <Button
+              onPress={hideModal}
+              style={{
+                // width: "48%",
+                backgroundColor: colors.darkBlue,
+                height: 48,
+                borderRadius: 12,
+                marginTop: 30,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 16,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Ingatkan saya
+              </Text>
+            </Button>
+          </View>
+        </Modal>
+      </Portal>
     </SafeAreaView>
   );
 }

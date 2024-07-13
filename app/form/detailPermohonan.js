@@ -30,6 +30,23 @@ export default function DetailPermohonan() {
   const [remainingTime, setRemainingTime] = useState(
     targetTime - new Date().getTime()
   );
+
+  const formatDateIndonesian = (date) => {
+    const dateString = date.toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const timeString = date.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+
+    return `${dateString} ${timeString} WIB`;
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setRemainingTime((prevTime) => {
@@ -235,7 +252,7 @@ export default function DetailPermohonan() {
     );
   }
 
-  console.log(draft);
+  // console.log(draft);
 
   return (
     <SafeAreaView
@@ -329,7 +346,7 @@ export default function DetailPermohonan() {
               Tanggal Pengajuan
             </Text>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.createdAt}
+              : {formatDateIndonesian(new Date(draft.createdAt))}
             </Text>
           </View>
           <View style={{ flexDirection: "row" }}>

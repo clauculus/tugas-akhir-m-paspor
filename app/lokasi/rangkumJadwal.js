@@ -70,6 +70,57 @@ export default function RangkumJadwal() {
   const handleSaveAndRedirect = async () => {
     const createdAt = new Date();
     const status = "Menunggu Pembayaran";
+    const step1 = {
+      nama: "MIRA SETIAWAN",
+      NIK: "3171234567890123",
+      tanggalLahir: new Date(),
+      jenisKelamin: "PEREMPUAN",
+      tanggalDikeluarkanKTP: new Date(),
+      kewarganegaraan: "INDONESIA",
+      alamat: "JL. PASTI CEPAT A7/66, RT 007/008, PEGADUNGAN, KALIDERES",
+      provinsi: "",
+      kabupaten: "",
+      kecamatan: "",
+      kodePos: "",
+      pictureTaken: "",
+      substep: "",
+    };
+    const step2 = {
+      sudahMemilikiPaspor: "",
+      tujuanMembuat: "",
+      rencanaTinggal: "",
+      namaKerabatInd: "",
+      nomorTeleponKerabatInd: "",
+      keteranganHubunganKerabatInd: "",
+      negaraTujuan: "",
+      tempatTinggalTujuan: "",
+      namaKerabatTujuan: "",
+      nomorTeleponTujuan: "",
+      keteranganHubunganTujuan: "",
+      substep: "",
+    };
+
+    const step3 = {
+      kkImage: "",
+      aktaImage: "",
+    };
+
+    const step4 = {
+      alamatSekarang: "",
+      pekerjaanPemohon: "",
+      nomorTeleponPemohon: "",
+      statusSipilPemohon: "",
+      namaIbu: "",
+      kewarganegaraanIbu: "",
+      alamatIbu: "",
+      namaAyah: "",
+      kewarganegaraanAyah: "",
+      alamatAyah: "",
+      namaPasangan: "",
+      kewarganegaraanPasangan: "",
+      alamatPasangan: "",
+      substep: "",
+    };
 
     const draftId = await saveDraft({
       detailLokasi,
@@ -79,6 +130,10 @@ export default function RangkumJadwal() {
       jenisPermohonan,
       createdAt,
       status,
+      step1,
+      step2,
+      step3,
+      step4,
     });
 
     router.push({
@@ -326,7 +381,7 @@ export default function RangkumJadwal() {
             </Text>
             <TextInput
               style={styles.input}
-              value={selectedDate + " Maret 2024"}
+              value={selectedDate + " Juli 2024"}
               placeholder="Nama"
               editable={false}
             />

@@ -25,6 +25,8 @@ export default function PilihJadwal() {
   const [selectedTime, setSelectedTime] = useState("");
   const [availableTimes, setAvailableTimes] = useState([]);
 
+  console.log("ini", selectedDate);
+
   const handleDayPress = (date, times) => {
     setSelectedDate(date);
     setAvailableTimes(times);
@@ -83,6 +85,51 @@ export default function PilihJadwal() {
           monthNumber={7}
           onDayPress={handleDayPress}
         />
+        <View>
+          <Text
+            style={{
+              color: colors.inactive,
+              marginLeft: 8,
+              fontSize: 16,
+              fontFamily: "FiraSansMedium",
+              marginBottom: 8,
+            }}
+          >
+            Keterangan
+          </Text>
+          <View style={{ flexDirection: "row", gap: 30, marginLeft: 10 }}>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <View
+                style={{
+                  width: 30,
+                  height: 30,
+                  backgroundColor: "#CAFFCA",
+                  borderRadius: 8,
+                }}
+              ></View>
+              <Text style={{ fontFamily: "FiraSansRegular" }}>
+                Kuota tersedia
+              </Text>
+            </View>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <View
+                style={{
+                  width: 30,
+                  height: 30,
+                  backgroundColor: "#FFBE69",
+                  borderRadius: 8,
+                }}
+              ></View>
+              <Text style={{ fontFamily: "FiraSansRegular" }}>
+                Tanggal terpilih
+              </Text>
+            </View>
+          </View>
+        </View>
         {selectedDate && (
           <View style={{ marginVertical: 10 }}>
             <Text style={styles.textForm}>

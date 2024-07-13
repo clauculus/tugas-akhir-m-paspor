@@ -54,7 +54,7 @@ const CustomCalendar = ({
       if (isAvailable) {
         setSelectedDate(date);
         setActive(date);
-        onDayPress(quota, times);
+        onDayPress(date, times);
       } else {
         Alert.alert("No Quota", "There is no quota available for this date.", [
           { text: "OK", onPress: () => console.log("OK Pressed") },
