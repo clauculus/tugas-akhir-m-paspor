@@ -94,6 +94,7 @@ export default function RootLayout() {
               name="detailNotification"
               options={{ headerShown: false }}
             />
+            <Stack.Screen name="daftarAkun" options={{ headerShown: false }} />
           </Stack>
         </SafeAreaProvider>
       </PaperProvider>

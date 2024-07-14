@@ -229,6 +229,7 @@ export default function Index() {
           >
             Belum memiliki akun?{" "}
             <Text
+              onPress={() => router.push("/daftarAkun")}
               style={{ color: colors.darkBlue, fontFamily: "FiraSansMedium" }}
             >
               Daftar Akun

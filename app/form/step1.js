@@ -57,11 +57,11 @@ export default function Step1() {
             setNama(draft.step1.nama || "");
             setNIK(draft.step1.NIK || "");
             setTanggalLahir(new Date(draft.step1.tanggalLahir) || new Date());
-            setJenisKelamin(draft.step1.jenisKelamin || "");
+            setJenisKelamin(draft.step1.jenisKelamin || "Perempuan");
             setTanggalDikeluarkanKTP(
               new Date(draft.step1.tanggalDikeluarkanKTP) || new Date()
             );
-            setKewarganegaraan(draft.step1.kewarganegaraan || "");
+            setKewarganegaraan(draft.step1.kewarganegaraan || "Indonesia");
             setAlamat(draft.step1.alamat || "");
             setProvinsi(draft.step1.provinsi || "");
             setKabupaten(draft.step1.kabupaten || "");
@@ -178,13 +178,13 @@ export default function Step1() {
   };
 
   const genderOptions = [
-    { label: "Laki-laki", value: "Laki-laki" },
-    { label: "Perempuan", value: "Perempuan" },
+    { label: "LAKI-LAKI", value: "LAKI-LAKI" },
+    { label: "PEREMPUAN", value: "PEREMPUAN" },
   ];
 
   const nationalityOptions = [
-    { label: "Indonesia", value: "Indonesia" },
-    { label: "Asing", value: "Asing" },
+    { label: "INDONESIA", value: "INDONESIA" },
+    { label: "ASING", value: "ASING" },
   ];
 
   const provinceOptions = [
@@ -416,7 +416,8 @@ export default function Step1() {
                   Jenis Kelamin <Text style={{ color: "red" }}>*</Text>
                 </Text>
                 <Select
-                  placeholder="Pilih Jenis Kelamin"
+                  placeholder={jenisKelamin}
+                  // defaultValue={jenisKelamin}
                   selectedValue={jenisKelamin}
                   width="full"
                   fontSize={15}
@@ -432,6 +433,12 @@ export default function Step1() {
                       value={gender.value}
                     />
                   ))}
+                  {/* <Select.Item
+                    value="PEREMPUAN"
+                    label={"PEREMPUAN"}
+                    defaultValue
+                  />
+                  <Select.Item value="Laki-laki" label={"Laki-laki"} /> */}
                 </Select>
               </View>
               <View style={styles.formGroup}>
@@ -467,6 +474,7 @@ export default function Step1() {
                   height={50}
                   borderRadius={10}
                   onValueChange={setKewarganegaraan}
+                  defaultValue="Indonesia"
                 >
                   {nationalityOptions.map((nationality) => (
                     <Select.Item

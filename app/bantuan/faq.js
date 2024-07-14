@@ -16,13 +16,42 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const faqData = [
   {
-    question: "Apa perbedaan paspor elektronik dan paspor biasa?",
+    question:
+      "Apa perbedaan paspor biasa, paspor elektronik, dan paspor polikarbonat?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac ornare eros. Proin est arcu, tempor ac dolor ac, efficitur volutpat erat. ",
+      "Paspor biasa: Merupakan paspor konvensional yang hanya berisi data identitas pemegangnya dalam bentuk cetak. Paspor elektronik (e-passport): Paspor ini memiliki chip elektronik yang menyimpan data biometrik pemegangnya, seperti sidik jari dan foto wajah, sehingga lebih aman dan sulit untuk dipalsukan. Paspor polikarbonat: Paspor ini memiliki halaman identitas yang terbuat dari bahan polikarbonat, menjadikannya lebih tahan lama dan aman dari pemalsuan karena data dicetak secara laser pada bahan tersebut.",
   },
   {
-    question: "BoDYYY?",
-    answer: "BANGG!!!",
+    question: "Kapan kuota permohonan paspor dibuka?",
+    answer:
+      "Kuota permohonan paspor biasanya dibuka pada waktu-waktu tertentu yang berbeda di setiap kantor imigrasi. Informasi mengenai pembukaan kuota dapat dipantau melalui aplikasi M-Paspor dengan mengaktifkan notifikasi pembukaan kuota atau melalui media sosial kantor imigrasi setempat.",
+  },
+  {
+    question: "Mengapa kuota permohonan paspor selalu habis?",
+    answer:
+      "Kuota permohonan paspor seringkali habis karena tingginya permintaan dari masyarakat. Oleh karena itu, disarankan untuk selalu memantau situs resmi layanan paspor agar dapat segera melakukan pemesanan ketika kuota dibuka.",
+  },
+  {
+    question:
+      "Apabila saya membutuhkan paspor dalam waktu yang cepat, apakah bisa?",
+    answer:
+      "Pada umumnya, paspor akan selesai dalam waktu 4-6 hari kerja. Jika Anda membutuhkan paspor dalam waktu yang cepat, Anda bisa mengajukan permohonan paspor percepatan dengan biaya tambahan Rp1.000.000, paspor akan selesai dalam waktu 1 hari kerja.",
+  },
+  {
+    question:
+      "Apabila saja dokumen yang diperlukan untuk melakukan permohonan paspor?",
+    answer:
+      "Dokumen yang diperlukan untuk melakukan permohonan paspor meliputi KTP, Kartu Keluarga, Akta Kelahiran atau Ijazah, serta paspor lama jika ada.",
+  },
+  {
+    question: "Bagaimana cara memeriksa status permohonan paspor saya?",
+    answer:
+      "Anda dapat memeriksa status permohonan paspor melalui bagian permohonan aktif pada aplikasi ini. Status permohonan paspor akan selalu diperbaharui sehingga Anda dapat mengetahui status terkini dari proses pembuatan paspor Anda.",
+  },
+  {
+    question: "Bagaimana cara mengambil paspor yang sudah selesai?",
+    answer:
+      "Untuk mengambil paspor yang sudah selesai, Anda perlu datang ke kantor imigrasi tempat Anda mengajukan permohonan dengan membawa tanda terima atau bukti permohonan dan identitas diri. Status permohonan paspor akan berubah menjadi Siap Diambil jika paspor sudah dapat diambil.",
   },
 ];
 
@@ -76,7 +105,7 @@ export default function FAQ() {
       </ImageBackground>
       <ScrollView style={{ paddingTop: 10, paddingHorizontal: 20 }}>
         {faqData.map((item) => (
-          <FAQItem item={item} key={item.answer} />
+          <FAQItem item={item} key={item.question} />
         ))}
       </ScrollView>
     </SafeAreaView>
