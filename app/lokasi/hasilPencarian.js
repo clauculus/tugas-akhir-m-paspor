@@ -528,7 +528,7 @@ export default function HasilPencarian() {
             </Text>
             {filter.kota && (
               <Text style={{ fontFamily: "FiraSansRegular", color: "white" }}>
-                KOTA {filter.kota}
+                Kota {filter.kota}
               </Text>
             )}
             {filter.tanggalAwal && filter.tanggalAkhir && (

@@ -269,14 +269,25 @@ export default function Beranda() {
               }}
             >
               <Text style={styles.headerText}>Beranda</Text>
-              <Ionicons
+              <TouchableOpacity
+                onPress={() => {
+                  router.push("/notification");
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/notifications.png")}
+                  style={{ width: 25, height: 30 }}
+                />
+              </TouchableOpacity>
+
+              {/* <Ionicons
                 name="notifications"
                 size={30}
                 color={"white"}
                 onPress={() => {
                   router.push("/notification");
                 }}
-              />
+              /> */}
             </View>
             <View style={styles.contentContainer}>
               <View

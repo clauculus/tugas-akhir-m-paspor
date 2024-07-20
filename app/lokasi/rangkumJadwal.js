@@ -285,7 +285,25 @@ export default function RangkumJadwal() {
                     >
                       pengisian kuesioner paspor
                     </Text>{" "}
-                    dan pembayaran dalam durasi 2 jam.
+                    dan{" "}
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      pembayaran{" "}
+                    </Text>
+                    dalam durasi
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      {" "}
+                      2 jam.{" "}
+                    </Text>
                   </Text>
                   <Text
                     style={{

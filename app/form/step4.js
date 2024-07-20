@@ -236,6 +236,7 @@ export default function Step4() {
                   fontFamily: "FiraSansMedium",
                   fontSize: 22,
                   marginBottom: 20,
+                  color: colors.darkBlue,
                 }}
               >
                 Apakah alamat anda sekarang sama seperti alamat pada KTP?

@@ -297,7 +297,14 @@ export default function DetailPermohonan() {
               Lokasi
             </Text>
             {draft.detailLokasi && (
-              <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              <Text
+                style={{
+                  fontFamily: "FiraSansRegular",
+                  fontSize: 16,
+                  width: "50%",
+                  // backgroundColor: "pink",
+                }}
+              >
                 : {draft.detailLokasi.lokasi.nama}
               </Text>
             )}
@@ -587,7 +594,6 @@ export default function DetailPermohonan() {
                 nikah/ijazah/surat baptis
                 {"\n"}
                 {"\u2022"} Paspor lama {"\n"}
-                {"\u2022"} Paspor lama
               </Text>
             </View>
             <View style={styles.item}>

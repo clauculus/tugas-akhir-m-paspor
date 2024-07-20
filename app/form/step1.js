@@ -521,10 +521,10 @@ export default function Step1() {
               </View>
               <View style={styles.formGroup}>
                 <Text style={styles.textForm}>
-                  Kabupaten <Text style={{ color: "red" }}>*</Text>
+                  Kabupaten/Kota <Text style={{ color: "red" }}>*</Text>
                 </Text>
                 <Select
-                  placeholder="Pilih Kabupaten"
+                  placeholder="Pilih Kabupaten/Kota"
                   selectedValue={kabupaten}
                   width="full"
                   fontSize={15}

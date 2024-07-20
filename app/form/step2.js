@@ -254,6 +254,7 @@ export default function Step2() {
                   fontFamily: "FiraSansMedium",
                   fontSize: 22,
                   marginBottom: 20,
+                  color: colors.darkBlue,
                 }}
               >
                 Apakah anda sudah pernah memiliki paspor?
@@ -349,6 +350,7 @@ export default function Step2() {
                   fontFamily: "FiraSansMedium",
                   fontSize: 22,
                   marginBottom: 20,
+                  color: colors.darkBlue,
                 }}
               >
                 Apakah tujuan anda {"\n"}membuat paspor?
@@ -404,6 +406,7 @@ export default function Step2() {
                   fontFamily: "FiraSansMedium",
                   fontSize: 22,
                   marginBottom: 20,
+                  color: colors.darkBlue,
                 }}
               >
                 Berapa lama rencana tinggal di luar negeri?
@@ -459,6 +462,7 @@ export default function Step2() {
                   fontFamily: "FiraSansMedium",
                   fontSize: 22,
                   marginBottom: 20,
+                  color: colors.darkBlue,
                 }}
               >
                 Nomor telepon keluarga/kerabat terdekat Anda di Indonesia yang
@@ -539,6 +543,7 @@ export default function Step2() {
                   style={{
                     fontFamily: "FiraSansMedium",
                     fontSize: 22,
+                    color: colors.darkBlue,
                   }}
                 >
                   Negara mana yang akan anda tuju?
@@ -577,6 +582,7 @@ export default function Step2() {
                   style={{
                     fontFamily: "FiraSansMedium",
                     fontSize: 22,
+                    color: colors.darkBlue,
                   }}
                 >
                   Di mana tempat tinggal di tujuan?
@@ -602,6 +608,7 @@ export default function Step2() {
                   style={{
                     fontFamily: "FiraSansMedium",
                     fontSize: 22,
+                    color: colors.darkBlue,
                   }}
                 >
                   Nomor telepon keluarga/kerabat di negara tujuan?

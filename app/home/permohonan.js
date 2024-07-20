@@ -305,7 +305,7 @@ const SecondRoute = ({ data, setData }) => {
             Lokasi
           </Text>
           <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-            : ULP Bandung
+            : ULP BANDUNG
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -320,7 +320,7 @@ const SecondRoute = ({ data, setData }) => {
             Tanggal Kedatangan
           </Text>
           <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-            : Jumat, 20 Mei 2022
+            : JUMAT, 20 MEI 2023
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>

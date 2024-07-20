@@ -20,7 +20,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function DaftarAkun() {
   const router = useRouter();
-  const [tanggalLahir, setTanggalLahir] = useState(new Date());
+  const [tanggalLahir, setTanggalLahir] = useState("");
 
   const [isSelected, setSelection] = useState(false);
   const [phone, setPhone] = useState("");
@@ -137,7 +137,11 @@ export default function DaftarAkun() {
               style={styles.datePicker}
             >
               <Text style={styles.dateText}>
-                {tanggalLahir && tanggalLahir.toLocaleDateString()}
+                {tanggalLahir ? (
+                  tanggalLahir.toLocaleDateString()
+                ) : (
+                  <Text style={{ color: colors.grey }}>DD/MM/YYYY</Text>
+                )}
               </Text>
             </TouchableOpacity>
             <DateTimePickerModal
@@ -152,7 +156,7 @@ export default function DaftarAkun() {
               Jenis Kelamin <Text style={{ color: "red" }}>*</Text>
             </Text>
             <Select
-              placeholder="Pilih Jenis Kelamin"
+              placeholder="PILIH JENIS KELAMIN"
               // selectedValue={jenisKelamin}
               width="full"
               fontSize={15}
@@ -190,7 +194,7 @@ export default function DaftarAkun() {
               style={styles.input}
               value={phone}
               onChangeText={setPhone}
-              placeholder="CHARLIZE CAVENDISH"
+              placeholder="0483294720238"
               keyboardType="numeric"
             />
           </View>

@@ -149,7 +149,7 @@ export default function Step3() {
             onPress={() => router.back()}
           />
           <View>
-            <Text style={styles.navbarText}>Data Tambahan Permohon</Text>
+            <Text style={styles.navbarText}>Dokumen Tambahan Permohon</Text>
           </View>
         </View>
         <View
