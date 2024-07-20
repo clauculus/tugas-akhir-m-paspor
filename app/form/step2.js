@@ -125,13 +125,15 @@ export default function Step2() {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     console.log(
+      "continue",
       namaKerabatInd,
       nomorTeleponKerabatInd,
-      keteranganHubunganKerabatInd
+      keteranganHubunganKerabatInd,
+      substep
     );
-    saveStepData({
+    await saveStepData({
       sudahMemilikiPaspor,
       tujuanMembuat,
       rencanaTinggal,
@@ -143,7 +145,6 @@ export default function Step2() {
       namaKerabatTujuan,
       nomorTeleponTujuan,
       keteranganHubunganTujuan,
-
       substep,
     });
     if (substep !== 5) {
@@ -200,7 +201,28 @@ export default function Step2() {
             name="chevron-back"
             color={colors.white}
             size={26}
-            onPress={() => router.back()}
+            onPress={() => {
+              saveStepData({
+                sudahMemilikiPaspor,
+                tujuanMembuat,
+                rencanaTinggal,
+                namaKerabatInd,
+                nomorTeleponKerabatInd,
+                keteranganHubunganKerabatInd,
+                negaraTujuan,
+                tempatTinggalTujuan,
+                namaKerabatTujuan,
+                nomorTeleponTujuan,
+                keteranganHubunganTujuan,
+                substep,
+              });
+              router.push({
+                pathname: "/form/detailPermohonan",
+                params: {
+                  draftId: draftId,
+                },
+              });
+            }}
           />
           <View>
             <Text style={styles.navbarText}>Kuesioner Permohonan Paspor</Text>

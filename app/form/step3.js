@@ -24,6 +24,7 @@ export default function Step3() {
 
   const [kkImage, setKkImage] = useState(null);
   const [aktaImage, setAktaImage] = useState(null);
+  const [substep, setSubstep] = useState(0);
   const [loading, setLoading] = useState(true);
   const { draftId } = useLocalSearchParams();
 
@@ -40,6 +41,7 @@ export default function Step3() {
           if (draft.step3) {
             setKkImage(draft.step3.kkImage || null);
             setAktaImage(draft.step3.aktaImage || null);
+            setSubstep(draft.step3.substep || 1);
           }
         }
       } catch (error) {
@@ -65,10 +67,12 @@ export default function Step3() {
     }
   };
 
-  const handleContinue = () => {
-    saveStepData({
+  const handleContinue = async () => {
+    setSubstep(1);
+    await saveStepData({
       kkImage,
       aktaImage,
+      substep,
     });
 
     router.push({
@@ -146,7 +150,19 @@ export default function Step3() {
             name="chevron-back"
             color={colors.white}
             size={26}
-            onPress={() => router.back()}
+            onPress={() => {
+              saveStepData({
+                kkImage,
+                aktaImage,
+                substep,
+              });
+              router.push({
+                pathname: "/form/detailPermohonan",
+                params: {
+                  draftId: draftId,
+                },
+              });
+            }}
           />
           <View>
             <Text style={styles.navbarText}>Dokumen Tambahan Permohon</Text>

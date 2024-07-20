@@ -96,8 +96,8 @@ export default function Step1() {
     }
   };
 
-  const handleContinue = () => {
-    saveStepData({
+  const handleContinue = async () => {
+    await saveStepData({
       nama,
       NIK,
       tanggalLahir,
@@ -145,8 +145,6 @@ export default function Step1() {
       return "Langkah 2: Verifikasi Data";
     }
   };
-
-  console.log(substep);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isKTPDatePickerVisible, setKTPDatePickerVisibility] = useState(false);

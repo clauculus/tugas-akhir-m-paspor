@@ -180,7 +180,7 @@ export default function DetailPermohonan() {
     };
 
     fetchDraft();
-  }, []);
+  }, [draftId]);
 
   const saveDrafts = async (newDraft) => {
     try {
@@ -196,9 +196,9 @@ export default function DetailPermohonan() {
   };
 
   const getColor = (status) => {
-    if (status === "Menunggu Pembayaran") {
+    if (status === "PENGISIAN FORMULIR") {
       return colors.yellow;
-    } else if (status === "Pembayaran Berhasil") {
+    } else if (status === "PEMBAYARAN BERHASIL") {
       return colors.green;
     } else {
       return "red";
@@ -221,7 +221,7 @@ export default function DetailPermohonan() {
       const draftIndex = drafts.findIndex((d) => d.id == draftId);
 
       if (draftIndex !== -1) {
-        drafts[draftIndex].status = "Pembayaran Berhasil";
+        drafts[draftIndex].status = "PEMBAYARAN BERHASIL";
         await AsyncStorage.setItem("drafts", JSON.stringify(drafts));
         setDraft(drafts[draftIndex]);
         console.log("tes");
@@ -233,7 +233,7 @@ export default function DetailPermohonan() {
 
   const handleContinue = () => {
     saveStepData();
-    setStatus("Pembayaran Berhasil");
+    setStatus("PEMBAYARAN BERHASIL");
     // router.push({
     //   pathname: `/form/detailPermohonanOthers`,
     //   params: {
@@ -276,7 +276,7 @@ export default function DetailPermohonan() {
           />
           <View>
             <Text style={styles.navbarText}>
-              {draft.status === "Menunggu Pembayaran"
+              {draft.status === "PENGISIAN FORMULIR"
                 ? "Permohonan Paspor"
                 : "Detail Permohonan Paspor"}
             </Text>
@@ -400,7 +400,7 @@ export default function DetailPermohonan() {
             </View>
           </View>
         </View>
-        {status === "Menunggu Pembayaran" && (
+        {status === "PENGISIAN FORMULIR" && (
           <View>
             <View
               style={{
@@ -469,9 +469,25 @@ export default function DetailPermohonan() {
                     padding: 20,
                     borderWidth: 0.5,
                     borderColor: "#6FA39A",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 10,
                   }}
                   onPress={() => handleStepChange("step1")}
                 >
+                  {draft.step1 && draft.step1.substep == "2" ? (
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={24}
+                      color={colors.green}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="radio-button-off"
+                      size={24}
+                      color={colors.darkGreen}
+                    />
+                  )}
                   <Text
                     style={{
                       fontFamily: "FiraSansMedium",
@@ -494,9 +510,25 @@ export default function DetailPermohonan() {
                     padding: 20,
                     borderWidth: 0.5,
                     borderColor: "#6FA39A",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 10,
                   }}
                   onPress={() => handleStepChange("step2")}
                 >
+                  {draft.step2 && draft.step2.substep == "5" ? (
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={24}
+                      color={colors.green}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="radio-button-off"
+                      size={24}
+                      color={colors.darkGreen}
+                    />
+                  )}
                   <Text
                     style={{
                       fontFamily: "FiraSansMedium",
@@ -519,9 +551,25 @@ export default function DetailPermohonan() {
                     padding: 20,
                     borderWidth: 0.5,
                     borderColor: "#6FA39A",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 10,
                   }}
                   onPress={() => handleStepChange("step3")}
                 >
+                  {draft.step3 && draft.step3.substep == "1" ? (
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={24}
+                      color={colors.green}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="radio-button-off"
+                      size={24}
+                      color={colors.darkGreen}
+                    />
+                  )}
                   <Text
                     style={{
                       fontFamily: "FiraSansMedium",
@@ -544,9 +592,25 @@ export default function DetailPermohonan() {
                     padding: 20,
                     borderWidth: 0.5,
                     borderColor: "#6FA39A",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 10,
                   }}
                   onPress={() => handleStepChange("step4")}
                 >
+                  {draft.step4 && draft.step4.substep == "4" ? (
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={24}
+                      color={colors.green}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="radio-button-off"
+                      size={24}
+                      color={colors.darkGreen}
+                    />
+                  )}
                   <Text
                     style={{
                       fontFamily: "FiraSansMedium",
@@ -564,7 +628,7 @@ export default function DetailPermohonan() {
             </View>
           </View>
         )}
-        {status !== "Menunggu Pembayaran" && (
+        {status !== "PENGISIAN FORMULIR" && (
           <View style={{ paddingVertical: 0 }}>
             <View
               style={{

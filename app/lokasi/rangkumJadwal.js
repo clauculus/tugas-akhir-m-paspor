@@ -69,7 +69,7 @@ export default function RangkumJadwal() {
 
   const handleSaveAndRedirect = async () => {
     const createdAt = new Date();
-    const status = "Menunggu Pembayaran";
+    const status = "PENGISIAN FORMULIR";
     const step1 = {
       nama: "MIRA SETIAWAN",
       NIK: "3171234567890123",
@@ -83,7 +83,7 @@ export default function RangkumJadwal() {
       kecamatan: "",
       kodePos: "",
       pictureTaken: "",
-      substep: "",
+      substep: 0,
     };
     const step2 = {
       sudahMemilikiPaspor: "",
@@ -97,12 +97,13 @@ export default function RangkumJadwal() {
       namaKerabatTujuan: "",
       nomorTeleponTujuan: "",
       keteranganHubunganTujuan: "",
-      substep: "",
+      substep: 0,
     };
 
     const step3 = {
       kkImage: "",
       aktaImage: "",
+      substep: 0,
     };
 
     const step4 = {
@@ -119,7 +120,7 @@ export default function RangkumJadwal() {
       namaPasangan: "",
       kewarganegaraanPasangan: "",
       alamatPasangan: "",
-      substep: "",
+      substep: 0,
     };
 
     const draftId = await saveDraft({

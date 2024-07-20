@@ -25,7 +25,7 @@ const FirstRoute = ({ data, setData }) => {
   const [drafts, setDrafts] = useState([]);
 
   const getColor = (status) => {
-    if (status === "Menunggu Pembayaran") {
+    if (status === "PENGISIAN FORMULIR") {
       return colors.yellow;
     } else if (status === "Pembayaran Gagal") {
       return "red";

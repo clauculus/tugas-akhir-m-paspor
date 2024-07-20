@@ -368,7 +368,16 @@ export default function HasilPencarian() {
     setNamaKantor(item.lokasi.nama);
     setVisible(true);
   };
-  const hideModal = () => setVisible(false);
+  const hideModal = () => {
+    setVisible(false);
+    setVisible2(true);
+  };
+  const [visible2, setVisible2] = useState(false);
+  const showModal2 = (item) => {
+    // setNamaKantor(item.lokasi.nama);
+    setVisible2(true);
+  };
+  const hideModal2 = () => setVisible2(false);
   const containerStyle = {
     backgroundColor: "white",
     paddingTop: 20,
@@ -572,9 +581,9 @@ export default function HasilPencarian() {
           </Text>
           <View>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              Kuota permohonan paspor selanjutnya akan dibuka pada{" "}
+              Kuota permohonan paspor selanjutnya akan ditambahkan pada{" "}
               <Text style={{ fontFamily: "FiraSansSemiBold" }}>
-                Senin, 4 Agustus 2024
+                Senin, 10 Agustus 2024 09.00 WIB
               </Text>
             </Text>
             <Button
@@ -595,6 +604,65 @@ export default function HasilPencarian() {
                 }}
               >
                 Ingatkan saya
+              </Text>
+            </Button>
+          </View>
+        </Modal>
+      </Portal>
+      <Portal>
+        <Modal
+          visible={visible2}
+          onDismiss={hideModal2}
+          contentContainerStyle={containerStyle}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Ionicons
+              name="close"
+              size={32}
+              color="#D2D5D7"
+              onPress={hideModal2}
+            />
+          </View>
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              fontSize: 20,
+              // textAlign: "center",
+              color: colors.darkBlue,
+              marginBottom: 20,
+            }}
+          >
+            Notifikasi Pembukaan Kuota di {namaKantor} berhasil diaktifkan!
+          </Text>
+          <View>
+            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
+              Notifikasi akan dikirimkan{" "}
+              <Text style={{ fontFamily: "FiraSansSemiBold" }}>20 menit</Text>{" "}
+              sebelum waktu penambahan kuota baru
+            </Text>
+            <Button
+              onPress={hideModal2}
+              style={{
+                // width: "48%",
+                backgroundColor: colors.darkBlue,
+                height: 48,
+                borderRadius: 12,
+                marginTop: 30,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 16,
+                  fontFamily: "FiraSansMedium",
+                }}
+              >
+                Saya mengerti
               </Text>
             </Button>
           </View>
@@ -1096,109 +1164,6 @@ export default function HasilPencarian() {
         </Button>
       </View>
 
-      {/* <Portal>
-        <Modal
-          visible={modalVisible}
-          onDismiss={() => setModalVisible(false)}
-          contentContainerStyle={containerUrutkan}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "flex-end",
-            }}
-          >
-            <Ionicons
-              name="close"
-              size={32}
-              color="#D2D5D7"
-              onPress={hideModal}
-            />
-          </View>
-          <Text
-            style={{
-              fontFamily: "FiraSansMedium",
-              fontSize: 20,
-              // textAlign: "center",
-              color: colors.darkBlue,
-              marginBottom: 20,
-            }}
-          >
-            Pembukaan Kuota di {namaKantor}
-          </Text>
-          <View>
-            <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              Kuota pembukaan paspor untuk bulan Juli akan dibuka pada{" "}
-              <Text style={{ fontFamily: "FiraSansSemiBold" }}>
-                Senin, 3 Juni 2024
-              </Text>
-            </Text>
-            <Button
-              onPress={hideModal}
-              style={{
-                // width: "48%",
-                backgroundColor: colors.darkBlue,
-                height: 48,
-                borderRadius: 12,
-                marginTop: 30,
-              }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 16,
-                  fontFamily: "FiraSansMedium",
-                }}
-              >
-                Ingatkan saya
-              </Text>
-            </Button>
-          </View>
-        </Modal>
-      </Portal> */}
-
-      {/* <Modal visible={modalVisible} transparent={true}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "pink",
-              padding: 20,
-              borderRadius: 10,
-            }}
-          >
-            <Text style={{ color: colors.inactive }}>Urutkan</Text>
-            <Text style={{ color: colors.inactive }}>Urutkan</Text>
-            <Text style={{ color: colors.inactive }}>Urutkan</Text>
-            <Text style={{ color: colors.inactive }}>Urutkan</Text>
-            <Button title="Close" onPress={() => setModalVisible(false)} />
-          </View>
-        </View>
-      </Modal> */}
-      {/* <Modal
-        transparent
-        visible={modalVisible}
-        animationType="none"
-        onClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <TouchableOpacity style={styles.overlay} onPress={onClose} />
-          <Animated.View
-            style={[styles.modalContainer, { transform: [{ translateY }] }]}
-          >
-            <Text style={styles.modalText}>This is a modal!</Text>
-            <TouchableOpacity onPress={onClose}>
-              <Text style={styles.closeButton}>Close</Text>
-            </TouchableOpacity>
-          </Animated.View>
-        </View>
-      </Modal> */}
       <BottomModal
         visible={modalVisible}
         onDismiss={() => {

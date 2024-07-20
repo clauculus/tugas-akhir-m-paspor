@@ -48,7 +48,7 @@ const manualData = [
     question: "Menu Permohonan",
     answer: [
       "Menu Riwayat menampilkan daftar riwayat permohonan yang sudah kadaluarsa dan aktif.",
-      "Pada riwayat permohonan aktif, pemohon dapat melihat permohonan paspor dengan status ‘Menunggu Pembayaran’, ‘Pembayaran Berhasil’ , ‘Proses Penerbitan’, ‘Siap Diambil’, dan ‘Selesai’",
+      "Pada riwayat permohonan aktif, pemohon dapat melihat permohonan paspor dengan status ‘Pengisian Formulir’, ‘Pembayaran Berhasil’ , ‘Proses Penerbitan’, ‘Siap Diambil’, dan ‘Selesai’",
     ],
   },
   {

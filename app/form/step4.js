@@ -111,8 +111,8 @@ export default function Step4() {
     }
   };
 
-  const handleContinue = () => {
-    saveStepData({
+  const handleContinue = async () => {
+    await saveStepData({
       alamatSekarang,
       pekerjaanPemohon,
       nomorTeleponPemohon,
@@ -182,7 +182,30 @@ export default function Step4() {
             name="chevron-back"
             color={colors.white}
             size={26}
-            onPress={() => router.back()}
+            onPress={() => {
+              saveStepData({
+                alamatSekarang,
+                pekerjaanPemohon,
+                nomorTeleponPemohon,
+                statusSipilPemohon,
+                namaIbu,
+                kewarganegaraanIbu,
+                alamatIbu,
+                namaAyah,
+                kewarganegaraanAyah,
+                alamatAyah,
+                namaPasangan,
+                kewarganegaraanPasangan,
+                alamatPasangan,
+                substep,
+              });
+              router.push({
+                pathname: "/form/detailPermohonan",
+                params: {
+                  draftId: draftId,
+                },
+              });
+            }}
           />
           <View>
             <Text style={styles.navbarText}>Data Tambahan Permohon</Text>
