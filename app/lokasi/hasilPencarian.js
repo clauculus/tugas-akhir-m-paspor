@@ -362,6 +362,10 @@ export default function HasilPencarian() {
   const [isTanggalAwalPickerVisible, setTanggalAwalVisible] = useState(false);
   const [isTanggalAkhirPickerVisible, setTanggalAkhirVisible] = useState(false);
 
+  const [visibleJenisPaspor, setVisibleJenisPaspor] = useState(false);
+  const showModalJenisPaspor = () => setVisibleJenisPaspor(true);
+  const hideModalJenisPaspor = () => setVisibleJenisPaspor(false);
+
   const [namaKantor, setNamaKantor] = useState("");
   const [visible, setVisible] = useState(false);
   const showModal = (item) => {
@@ -583,7 +587,7 @@ export default function HasilPencarian() {
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
               Kuota permohonan paspor selanjutnya akan ditambahkan pada{" "}
               <Text style={{ fontFamily: "FiraSansSemiBold" }}>
-                Senin, 10 Agustus 2024 09.00 WIB
+                Raby, 14 Agustus 2024 09.00 WIB
               </Text>
             </Text>
             <Button
@@ -668,17 +672,124 @@ export default function HasilPencarian() {
           </View>
         </Modal>
       </Portal>
-      <View style={{ paddingTop: 24, paddingBottom: 8, paddingHorizontal: 24 }}>
-        <Text
-          style={{
-            fontSize: 18,
-            fontFamily: "FiraSansMedium",
-            color: colors.darkBlue,
-          }}
+      <Portal>
+        <Modal
+          visible={visibleJenisPaspor}
+          onDismiss={hideModalJenisPaspor}
+          contentContainerStyle={containerStyle}
         >
-          Jenis Paspor
-        </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Ionicons
+              name="close"
+              size={32}
+              color="#D2D5D7"
+              onPress={hideModalJenisPaspor}
+            />
+          </View>
+          <Text
+            style={{
+              fontFamily: "FiraSansMedium",
+              fontSize: 20,
+              textAlign: "center",
+              color: colors.darkBlue,
+              marginBottom: 20,
+            }}
+          >
+            Jenis Paspor
+          </Text>
+          <View>
+            <Text style={{ fontFamily: "FiraSansMedium", fontSize: 18 }}>
+              Paspor Biasa
+            </Text>
+            <Text
+              style={{
+                fontFamily: "FiraSansRegular",
+                fontSize: 15,
+                color: colors.inactive,
+                marginTop: 8,
+                marginBottom: 15,
+              }}
+            >
+              • Tersedia di seluruh lokasi
+              {"\n"}• Biaya : Rp350.000
+            </Text>
+          </View>
+          <View>
+            <Text style={{ fontFamily: "FiraSansMedium", fontSize: 18 }}>
+              Paspor Elektronik
+            </Text>
+            <Text
+              style={{
+                fontFamily: "FiraSansRegular",
+                fontSize: 15,
+                color: colors.inactive,
+                marginTop: 8,
+                marginBottom: 15,
+              }}
+            >
+              • Terdapat chip yang meningkatkan fitur keamanan paspor
+              {"\n"}• Tersedia di 102 lokasi
+              {"\n"}• Biaya : Rp650.000
+            </Text>
+          </View>
+          <View>
+            <Text style={{ fontFamily: "FiraSansMedium", fontSize: 18 }}>
+              Paspor Elektronik Polikarbonat
+            </Text>
+            <Text
+              style={{
+                fontFamily: "FiraSansRegular",
+                fontSize: 15,
+                color: colors.inactive,
+                marginTop: 8,
+                marginBottom: 15,
+              }}
+            >
+              • Berbahan polikarbonat sehingga lebih aman dan kuat
+              {"\n"}• Tersedia di Kanim Jakarta Selatan, Kanim Jakarta Barat,
+              dan Soekarno Hatta
+              {"\n"}• Biaya : Rp650.000
+            </Text>
+          </View>
+        </Modal>
+      </Portal>
+      <View
+        style={{
+          paddingTop: 24,
+          paddingBottom: 8,
+          paddingHorizontal: 24,
+          flexDirection: "row",
+        }}
+      >
         <View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 6,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: "FiraSansMedium",
+                color: colors.darkBlue,
+              }}
+            >
+              Jenis Paspor
+            </Text>
+            <Ionicons
+              name="information-circle"
+              size={22}
+              color={"#9B9A9A"}
+              onPress={showModalJenisPaspor}
+            />
+          </View>
           <Radio.Group
             name="myRadioGroup"
             value={jenisPaspor}

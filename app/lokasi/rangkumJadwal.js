@@ -337,7 +337,7 @@ export default function RangkumJadwal() {
                     }}
                   >
                     Ya, saya akan menyelesaikan pengisian kuesioner paspor dan
-                    pembayaran dalam 2 jamm
+                    pembayaran dalam 2 jam
                   </Text>
                 </View>
               </View>
@@ -400,7 +400,7 @@ export default function RangkumJadwal() {
             </Text>
             <TextInput
               style={styles.input}
-              value={selectedDate + " Juli 2024"}
+              value={selectedDate + " Agustus 2024"}
               placeholder="Nama"
               editable={false}
             />

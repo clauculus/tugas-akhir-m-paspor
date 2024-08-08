@@ -8,6 +8,8 @@ import {
   ImageBackground,
   Dimensions,
   TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import { Button, Select } from "native-base";
@@ -70,25 +72,6 @@ export default function DaftarAkun() {
           style={styles.backgroundImage}
         >
           <View style={styles.overlay}>
-            {/* <View
-              style={{
-                flexDirection: "row",
-                padding: 10,
-              }}
-            >
-              <Image
-                source={require("../assets/images/pengayoman-logo.png")}
-                style={{
-                  marginHorizontal: 10,
-                }}
-              />
-              <Image
-                source={require("../assets/images/imigrasi-logo.png")}
-                style={{
-                  marginHorizontal: 10,
-                }}
-              />
-            </View> */}
             <Text
               style={{
                 color: "white",
@@ -102,20 +85,13 @@ export default function DaftarAkun() {
           </View>
         </ImageBackground>
 
-        <View style={styles.bottomContainer}>
-          {/* <Text
-            style={{
-              paddingTop: 24,
-              textAlign: "center",
-              color: "white",
-              marginBottom: 44,
-              fontFamily: "FiraSansRegular",
-            }}
-          >
-            ©️ 2024 Direktorat Jenderal Imigrasi Republik Indonesia
-          </Text> */}
-        </View>
+        <View style={styles.bottomContainer}></View>
+
         <View style={styles.formContainer}>
+          {/* <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            // style={styles.container}
+          > */}
           <View style={styles.formGroup}>
             <Text style={styles.textForm}>
               Nama Lengkap <Text style={{ color: "red" }}>*</Text>
@@ -256,6 +232,7 @@ export default function DaftarAkun() {
               Masuk ke Akun
             </Text>
           </Text>
+          {/* </KeyboardAvoidingView> */}
         </View>
       </View>
     </SafeAreaView>
@@ -267,6 +244,10 @@ const { height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "white",
   },
   tabView: {
     backgroundColor: "white",
@@ -309,6 +290,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 24,
     textAlign: "center",
+  },
+  safeArea: {
+    backgroundColor: "#FFFFFF",
+    flex: 1,
   },
   input: {
     height: 48,

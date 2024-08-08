@@ -242,9 +242,9 @@ export default function DetailLokasi() {
           </Text>
           <View>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              Kuota permohonan paspor selanjutnya akan dibuka pada{" "}
+              Kuota permohonan paspor selanjutnya akan ditambahkan pada{" "}
               <Text style={{ fontFamily: "FiraSansSemiBold" }}>
-                Senin, 4 Agustus 2024
+                Senin, 4 Agustus 2024 09.00 WIB
               </Text>
             </Text>
             <Button

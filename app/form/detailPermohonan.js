@@ -322,7 +322,7 @@ export default function DetailPermohonan() {
               Tanggal Kedatangan
             </Text>
             <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-              : {draft.selectedDate} Juli 2024
+              : {draft.selectedDate} Agustus 2024
             </Text>
           </View>
           <View style={{ flexDirection: "row" }}>
@@ -488,15 +488,26 @@ export default function DetailPermohonan() {
                       color={colors.darkGreen}
                     />
                   )}
-                  <Text
-                    style={{
-                      fontFamily: "FiraSansMedium",
-                      fontSize: 18,
-                      color: colors.darkBlue,
-                    }}
-                  >
-                    Verifikasi NIK
-                  </Text>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        fontSize: 18,
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      Verifikasi NIK
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansRegular",
+                        color: "#7898AE",
+                        fontSize: 15,
+                      }}
+                    >
+                      {(draft.step1 && draft.step1.substep) || "0"}/2 langkah
+                    </Text>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
@@ -529,15 +540,26 @@ export default function DetailPermohonan() {
                       color={colors.darkGreen}
                     />
                   )}
-                  <Text
-                    style={{
-                      fontFamily: "FiraSansMedium",
-                      fontSize: 18,
-                      color: colors.darkBlue,
-                    }}
-                  >
-                    Kuesioner Permohonan Paspor
-                  </Text>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        fontSize: 18,
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      Kuesioner Permohonan Paspor
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansRegular",
+                        color: "#7898AE",
+                        fontSize: 15,
+                      }}
+                    >
+                      {(draft.step2 && draft.step2.substep) || "0"}/5 langkah
+                    </Text>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
@@ -570,15 +592,26 @@ export default function DetailPermohonan() {
                       color={colors.darkGreen}
                     />
                   )}
-                  <Text
-                    style={{
-                      fontFamily: "FiraSansMedium",
-                      fontSize: 18,
-                      color: colors.darkBlue,
-                    }}
-                  >
-                    Unggah Dokumen
-                  </Text>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        fontSize: 18,
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      Unggah Dokumen
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansRegular",
+                        color: "#7898AE",
+                        fontSize: 15,
+                      }}
+                    >
+                      {(draft.step3 && draft.step3.substep) || "0"}/1 langkah
+                    </Text>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
@@ -611,15 +644,26 @@ export default function DetailPermohonan() {
                       color={colors.darkGreen}
                     />
                   )}
-                  <Text
-                    style={{
-                      fontFamily: "FiraSansMedium",
-                      fontSize: 18,
-                      color: colors.darkBlue,
-                    }}
-                  >
-                    Data Tambahan Pemohon
-                  </Text>
+                  <View>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansMedium",
+                        fontSize: 18,
+                        color: colors.darkBlue,
+                      }}
+                    >
+                      Data Tambahan Pemohon
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "FiraSansRegular",
+                        color: "#7898AE",
+                        fontSize: 15,
+                      }}
+                    >
+                      {(draft.step4 && draft.step4.substep) || "0"}/4 langkah
+                    </Text>
+                  </View>
                 </TouchableOpacity>
               </View>
               <Button style={styles.blueButton} onPress={handleContinue}>

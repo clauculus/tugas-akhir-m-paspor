@@ -175,7 +175,7 @@ const FirstRoute = ({ data, setData }) => {
                 {": "}
               </Text>
               <Text style={{ fontFamily: "FiraSansRegular", fontSize: 16 }}>
-                {draft.selectedDate} JULI 2024
+                {draft.selectedDate} AGUSTUS 2024
               </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -409,7 +409,7 @@ export default function Index() {
 
   const [routes] = useState([
     { key: "first", title: "Aktif" },
-    { key: "second", title: "Riwayat" },
+    { key: "second", title: "Selesai" },
   ]);
 
   const renderScene = SceneMap({

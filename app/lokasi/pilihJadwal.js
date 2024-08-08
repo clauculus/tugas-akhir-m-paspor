@@ -74,7 +74,7 @@ export default function PilihJadwal() {
             marginBottom: 10,
           }}
         >
-          Juli 2024
+          Agustus 2024
         </Text>
         {/* <Text>{detailLokasi.lokasi.nama}</Text>
       <Text>{detailLokasi.lokasi.jarak}</Text> */}
@@ -82,7 +82,7 @@ export default function PilihJadwal() {
           startDate={startDate}
           endDate={endDate}
           locationArray={detailLokasi.lokasi}
-          monthNumber={7}
+          monthNumber={8}
           onDayPress={handleDayPress}
         />
         <View>

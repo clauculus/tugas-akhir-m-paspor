@@ -11,7 +11,7 @@ export const kanim = [
     jarak: 10,
     reguler: [
       {
-        7: [
+        8: [
           {
             1: {
               kuota: 28,
@@ -71,7 +71,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             1: {
               kuota: 60,
@@ -100,7 +100,7 @@ export const kanim = [
     jarak: 15,
     reguler: [
       {
-        7: [
+        8: [
           {
             1: {
               kuota: 20,
@@ -154,7 +154,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             2: {
               kuota: 50,
@@ -183,7 +183,7 @@ export const kanim = [
     jarak: 50,
     reguler: [
       {
-        7: [
+        8: [
           {
             5: {
               kuota: 30,
@@ -237,7 +237,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             7: {
               kuota: 40,
@@ -266,7 +266,7 @@ export const kanim = [
     jarak: 50,
     reguler: [
       {
-        7: [
+        8: [
           {
             5: {
               kuota: 30,
@@ -320,7 +320,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             7: {
               kuota: 40,
@@ -349,7 +349,7 @@ export const kanim = [
     jarak: 15,
     reguler: [
       {
-        7: [
+        8: [
           {
             1: {
               kuota: 20,
@@ -397,7 +397,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             2: {
               kuota: 50,
@@ -426,7 +426,7 @@ export const kanim = [
     jarak: 15,
     reguler: [
       {
-        7: [
+        8: [
           {
             1: {
               kuota: 20,
@@ -474,7 +474,7 @@ export const kanim = [
     ],
     percepatan: [
       {
-        7: [
+        8: [
           {
             2: {
               kuota: 50,

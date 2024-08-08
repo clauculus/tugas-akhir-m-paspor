@@ -39,12 +39,11 @@ export default function OnboardingScreen1() {
         Cari Kuota Permohonan Paspor
       </Text>
       <Image
-        source={require("../../assets/images/onboarding1.png")}
-        style={
-          {
-            // marginHorizontal: 10,
-          }
-        }
+        source={require("../../assets/images/ob1.png")}
+        style={{
+          width: 230,
+          height: 291,
+        }}
       />
       <Text
         style={{

@@ -40,8 +40,8 @@ export default function OnboardingScreen3() {
         Lakukan Pembayaran
       </Text>
       <Image
-        source={require("../../assets/images/onboarding3.png")}
-        style={{ marginBottom: 20 }}
+        source={require("../../assets/images/ob3.png")}
+        style={{ marginBottom: 20, width: 240, height: 240 }}
       />
       <Text
         style={{
@@ -62,7 +62,7 @@ export default function OnboardingScreen3() {
           width: "100%",
         }}
       >
-        Setelah itu, kamu bisa datang ke kantor imigrasi sesuai tangal
+        Setelah itu, kamu bisa datang ke kantor imigrasi sesuai tanggal
         penjadwalan!
       </Text>
 

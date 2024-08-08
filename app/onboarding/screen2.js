@@ -18,7 +18,7 @@ export default function OnboardingScreen2() {
         flex: 1,
         paddingVertical: 50,
         paddingHorizontal: 50,
-        rowGap: 20,
+        // rowGap: 20,
       }}
     >
       <Image
@@ -39,7 +39,10 @@ export default function OnboardingScreen2() {
       >
         Persiapkan Dokumen Persyaratan
       </Text>
-      <Image source={require("../../assets/images/onboarding2.png")} />
+      <Image
+        source={require("../../assets/images/ob2.png")}
+        style={{ width: 240, height: 251, marginBottom: 20 }}
+      />
       <Text
         style={{
           color: colors.inactive,
@@ -55,8 +58,8 @@ export default function OnboardingScreen2() {
           color: colors.inactive,
           fontSize: 15,
           fontFamily: "FiraSansRegular",
-          marginBottom: 10,
           width: "100%",
+          marginBottom: 30,
         }}
       >
         {"\u2022"} Kartu Tanda Penduduk{"\n"}
